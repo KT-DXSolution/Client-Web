@@ -1,9 +1,13 @@
+
+import React from 'react';
+import styled from 'styled-components';
+
 const RouterTestPage = () => {
-    return (
-      <div>
-        <h1>RouterTestPage</h1>
+  return (
+    <div>
+      router test
       </div>
-    );
-  };
-  
-  export default RouterTestPage;
+  );
+}
+
+export default RouterTestPage;
