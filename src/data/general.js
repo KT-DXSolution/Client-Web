@@ -8,11 +8,13 @@ import avatar7 from "assets/img/avatars/avatar7.png";
 import avatar8 from "assets/img/avatars/avatar8.png";
 import avatar9 from "assets/img/avatars/avatar9.png";
 import avatar10 from "assets/img/avatars/avatar10.png";
+import salad from "assets/img/food/salad.png"
+import coke from "assets/img/food/coke.png"
+import milk from "assets/img/food/milk500.png"
 // Custom icons
 import {
   AdobexdLogo,
   AtlassianLogo,
-  InvisionLogo,
   JiraLogo,
   SlackLogo,
   SpotifyLogo,
@@ -31,45 +33,45 @@ import { SiDropbox } from "react-icons/si";
 
 export const dashboardTableData = [
   {
-    logo: AdobexdLogo,
-    name: "Purity UI Version",
+    foodImg: salad,
+    name: "닭가슴살 샐러드",
     members: [avatar1, avatar2, avatar3, avatar4, avatar5],
-    budget: "$14,000",
+    budget: "₩5,000",
     progression: 60,
   },
   {
-    logo: AtlassianLogo,
-    name: "Add Progress Track",
+    foodImg: coke,
+    name: "코카콜라 250ml x 1캔",
     members: [avatar3, avatar2],
-    budget: "$3,000",
+    budget: "₩1,000",
     progression: 10,
   },
   {
-    logo: SlackLogo,
-    name: "Fix Platform Errors",
+    foodImg: milk,
+    name: "서울우유 500ml",
     members: [avatar10, avatar4],
-    budget: "Not set",
+    budget: "₩1,000",
     progression: 100,
   },
   {
-    logo: SpotifyLogo,
-    name: "Launch our Mobile App",
+    foodImg: salad,
+    name: "닭가슴살 샐러드",
     members: [avatar2, avatar3, avatar7, avatar8],
-    budget: "$32,000",
+    budget: "₩5,000",
     progression: 100,
   },
   {
-    logo: JiraLogo,
-    name: "Add the New Pricing Page",
+    foodImg: coke,
+    name: "코카콜라 250ml x 1캔",
     members: [avatar10, avatar3, avatar7, avatar2, avatar8],
-    budget: "$400",
+    budget: "₩5,000",
     progression: 25,
   },
   {
-    logo: InvisionLogo,
-    name: "Redesign New Online Shop",
+    foodImg: milk,
+    name: "서울우유 500ml",
     members: [avatar9, avatar3, avatar2],
-    budget: "$7,600",
+    budget: "₩5,000",
     progression: 40,
   },
 ];
@@ -110,88 +112,18 @@ export const timelineData = [
     title: "[배달 완료] 양념치킨 도시락",
     date: "18 DEC 4:41 PM",
   },
-];
-export const rtlDashboardTableData = [
-  {
-    logo: AdobexdLogo,
-    name: "نسخة Purity UI",
-    members: [avatar1, avatar2, avatar3, avatar4, avatar5],
-    budget: "$14,000",
-    progression: 60,
-  },
-  {
-    logo: AtlassianLogo,
-    name: "إضافة مسار التقدم",
-    members: [avatar3, avatar2],
-    budget: "$3,000",
-    progression: 10,
-  },
-  {
-    logo: SlackLogo,
-    name: "إصلاح أخطاء النظام الأساسي",
-    members: [avatar10, avatar4],
-    budget: "غير مضبوط",
-    progression: 100,
-  },
-  {
-    logo: SpotifyLogo,
-    name: "إطلاق تطبيق الهاتف المحمول الخاص بنا",
-    members: [avatar2, avatar3, avatar7, avatar8],
-    budget: "$32,000",
-    progression: 100,
-  },
-  {
-    logo: JiraLogo,
-    name: "أضف صفحة التسعير الجديدة",
-    members: [avatar10, avatar3, avatar7, avatar2, avatar8],
-    budget: "$400",
-    progression: 25,
-  },
-  {
-    logo: InvisionLogo,
-    name: "إعادة تصميم متجر جديد على الإنترنت",
-    members: [avatar9, avatar3, avatar2],
-    budget: "$7,600",
-    progression: 40,
-  },
-];
-
-export const rtlTimelineData = [
   {
     logo: FaBell,
-    title: "$2400, تغييرات في التصميم",
+    title: "[새 리뷰 알림] 양념치킨 도시락",
     date: "22 DEC 7:20 PM",
     color: "teal.300",
   },
   {
     logo: FaHtml5,
-    title: "طلب جديد #4219423",
+    title: "[입금 알림] 페퍼로니 냉동 피자",
     date: "21 DEC 11:21 PM",
     color: "orange",
-  },
-  {
-    logo: FaShoppingCart,
-    title: "مدفوعات الخادم لشهر أبريل",
-    date: "21 DEC 9:28 PM",
-    color: "blue.400",
-  },
-  {
-    logo: FaCreditCard,
-    title: "تمت إضافة بطاقة جديدة للطلب #3210145",
-    date: "20 DEC 3:52 PM",
-    color: "orange.300",
-  },
-  {
-    logo: SiDropbox,
-    title: "فتح الحزم من أجل التنمية",
-    date: "19 DEC 11:35 PM",
-    color: "purple",
-  },
-  {
-    logo: AdobexdLogo,
-    title: "طلب جديد #9851258",
-    date: "18 DEC 4:41 PM",
-  },
+  }
 ];
 
 export const tablesTableData = [

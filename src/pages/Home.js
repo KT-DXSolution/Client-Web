@@ -16,7 +16,7 @@ const Home = () => {
           <ObjectList
             title={"Registered Object"}
             amount={30}
-            captions={["Companies", "Members", "Budget", "Completion"]}
+            captions={["메뉴", "관심있는 고객", "가격", "판매율"]}
             data={dashboardTableData}
           />  
           

@@ -65,6 +65,7 @@ const ObjectList = ({ title, amount, captions, data }) => {
                 members={row.members}
                 budget={row.budget}
                 progression={row.progression}
+                foodImg={row.foodImg}
               />
             );
           })}
