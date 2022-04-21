@@ -8,31 +8,35 @@ import {
   Thead,
   Tr,
   useColorModeValue,
-  Button
+  Button,
+  AlertTitle
 } from "@chakra-ui/react";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import DashboardTableRow from "components/Tables/DashboardTableRow";
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const ObjectList = ({ title, amount, captions, data }) => {
   const textColor = useColorModeValue("gray.700", "white");
 
   return (
-    <Card p='16px' overflowX={{ sm: "scroll", xl: "hidden" }}>
-      <CardHeader p='12px 0px 28px 0px'>
+    <Card p='36px' overflowX={{ sm: "scroll", xl: "hidden" }}>
+      <CardHeader p='12px 0px 28px 10px'>
         <Flex justify='space-between' align='center' mb='1rem' w='100%'>
           <Text fontSize='lg' color={textColor} fontWeight='bold' pb='.5rem' style={{padding:"0"}}>
             {title}
           </Text>
-          <Button
-            colorScheme='teal'
-            variant='solid'
-            fontSize='s'
-            p='8px 32px'
-            style={{cursor:"pointer"}}>
-            등록
-          </Button>
+          <Link to="/registerItem">
+            <Button
+              colorScheme='teal'
+              variant='solid'
+              fontSize='s'
+              p='8px 32px'
+              style={{cursor:"pointer"}}>
+              등록
+            </Button>
+          </Link>
         </Flex>
       </CardHeader>
       <Table variant='simple' color={textColor}>

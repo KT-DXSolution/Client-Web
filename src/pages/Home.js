@@ -14,14 +14,14 @@ const Home = () => {
           gap='24px'
           style={{width:"85vw"}}>
           <ObjectList
-            title={"Registered Object"}
+            title={"물품"}
             amount={30}
             captions={["메뉴", "관심있는 고객", "가격", "판매율"]}
             data={dashboardTableData}
           />  
           
           <OrdersOverview
-              title={"Orders Overview"}
+              title={"실시간 주문 현황"}
               amount={30}
               data={timelineData}
             />
