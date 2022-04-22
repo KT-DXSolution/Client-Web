@@ -14,14 +14,16 @@ import {
   InputRightAddon,
   InputGroup,
   Box,
-  Image
+  Image,
+  Icon
  } from "@chakra-ui/react";
- import milk from "assets/img/food/milk500.png"
+import { MdAddPhotoAlternate } from "react-icons/md";
 
 const RegisterItem = () => {
   const textColor = useColorModeValue("gray.700", "white");
   const bgColor = useColorModeValue("white", "gray.700");
   const titleColor = useColorModeValue("teal.300", "teal.200");
+  const bgIcons = useColorModeValue("gray.100", "rgba(255, 255, 255, 0.5)");
 
   return (
     <Flex alignItems='center' justifyContent='center' mb='60px' mt='20px'>
@@ -34,7 +36,7 @@ const RegisterItem = () => {
         mx={{ base: "100px" }}
         bg={bgColor}
         boxShadow='0 20px 27px 0 rgb(0 0 0 / 5%)'>
-
+        
         <Text
           fontSize='xl'
           color={textColor}
@@ -43,15 +45,30 @@ const RegisterItem = () => {
           mb='22px'>
           Register Item
         </Text>
-
+        
         <FormControl>
         <FormLabel ms='4px' fontSize='sm' fontWeight='normal'>
             사진
           </FormLabel>
-          <Box mb='24px' maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" mg="20px">
-            
-            <Image src={milk}  />
-          </Box>
+          <Flex
+              justify='center'
+              align='center'
+              w='100%'
+              h='300px'
+              borderRadius='15px'
+              border='1px solid lightgray'
+              cursor='pointer'
+              transition='all .25s ease'
+              _hover={{ bg: bgIcons }}
+              mb='24px'>
+            <Icon
+              as={MdAddPhotoAlternate}
+              w='50px'
+              h='50px'
+              _hover={{ filter: "brightness(120%)" }}
+            >
+            </Icon>
+          </Flex>
           <FormLabel ms='4px' fontSize='sm' fontWeight='normal'>
             메뉴명
           </FormLabel>
