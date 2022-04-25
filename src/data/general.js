@@ -126,6 +126,30 @@ export const timelineData = [
   }
 ];
 
+export const itemData = [
+  {
+    foodImg: salad,
+    name: "닭가슴살 샐러드",
+    members: [],
+    budget: "₩5,000",
+    progression: 60,
+  },
+  {
+    foodImg: coke,
+    name: "코카콜라 250ml x 1캔",
+    members: [],
+    budget: "₩1,000",
+    progression: 10,
+  },
+  {
+    foodImg: milk,
+    name: "서울우유 500ml",
+    members: [],
+    budget: "₩1,000",
+    progression: 100,
+  }
+];
+
 export const tablesTableData = [
   {
     logo: avatar1,

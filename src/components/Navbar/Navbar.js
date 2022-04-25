@@ -43,8 +43,8 @@ function Navbar() {
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/RouterTestPage' className='nav-links' onClick = {closeMobileMenu}>
-                            Page1
+                        <Link to='/RegisterItem' className='nav-links' onClick = {closeMobileMenu}>
+                            Items
                         </Link>
                     </li>
                     <li className='nav-item'>

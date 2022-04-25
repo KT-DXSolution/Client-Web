@@ -8,17 +8,16 @@ import {
   Thead,
   Tr,
   useColorModeValue,
-  Button,
-  AlertTitle
+  Td,
+  Avatar
 } from "@chakra-ui/react";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
-import DashboardTableRow from "components/Tables/DashboardTableRow";
 import React from "react";
-import { Link } from 'react-router-dom';
 
-const ObjectList = ({ title, amount, captions, data }) => {
+const ItemList = ({ title, amount, captions, data }) => {
   const textColor = useColorModeValue("gray.700", "white");
+  const bgIcons = useColorModeValue("gray.100", "rgba(255, 255, 255, 0.5)");
 
   return (
     <Card p='36px' overflowX={{ sm: "scroll", xl: "hidden" }}>
@@ -27,21 +26,11 @@ const ObjectList = ({ title, amount, captions, data }) => {
           <Text fontSize='lg' color={textColor} fontWeight='bold' pb='.5rem' style={{padding:"0"}}>
             {title}
           </Text>
-          <Link to="/registerStock">
-            <Button
-              colorScheme='teal'
-              variant='solid'
-              fontSize='s'
-              p='8px 32px'
-              style={{cursor:"pointer"}}>
-              등록
-            </Button>
-          </Link>
         </Flex>
       </CardHeader>
       <Table variant='simple' color={textColor}>
         <Thead>
-          <Tr my='.8rem' ps='0px'>
+          <Tr my='.8rem' ps='0px' >
             {captions.map((caption, idx) => {
               return (
                 <Th color='gray.400' key={idx} ps={idx === 0 ? "0px" : null}>
@@ -54,15 +43,30 @@ const ObjectList = ({ title, amount, captions, data }) => {
         <Tbody>
           {data.map((row) => {
             return (
-              <DashboardTableRow
-                key={row.name}
-                name={row.name}
-                logo={row.logo}
-                members={row.members}
-                budget={row.budget}
-                progression={row.progression}
-                foodImg={row.foodImg}
-              />
+              <Tr cursor='pointer'
+              transition='all .25s ease'
+              _hover={{ bg: bgIcons }}
+              borderRadius='15px'
+              >
+                <Td minWidth={{ sm: "250px" }} pl="0px" >
+                  <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
+                    <Avatar src={row.imageUrl} w="50px" borderRadius="12px" me="18px" />
+                    <Text
+                      fontSize="md"
+                      color={textColor}
+                      fontWeight="bold"
+                      minWidth="100%"
+                    >
+                      {row.name}
+                    </Text>
+                  </Flex>
+                </Td>
+                <Td>
+                  <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
+                    {/* {row.budget} */}
+                  </Text>
+                </Td>
+              </Tr>
             );
           })}
         </Tbody>
@@ -71,4 +75,4 @@ const ObjectList = ({ title, amount, captions, data }) => {
   );
 };
 
-export default ObjectList;
+export default ItemList;
