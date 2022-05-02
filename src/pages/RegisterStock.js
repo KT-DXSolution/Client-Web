@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import { itemData } from "data/general";
 import axios from 'axios';
@@ -16,18 +16,38 @@ import StockInputCard from "components/StockInputCard"
 
 const RegisterStock = () => {
   const bgIcons = useColorModeValue("gray.100", "rgba(255, 255, 255, 0.5)");
+  const [stockArray, setStockArray] = useState([]);
+
   let serverData;
-  (function getData(){
+  function getData(){
     axios({
       method: 'get',
       url: '/v1/manager/store/1/item',
       headers : {'Authorization':'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA'}
     })
-      .then(function (response) {
-        serverData = response.data.data
-        console.log(typeof serverData);
-      });
-  })()
+    .then(function (response) {
+      serverData = response.data.data.length;
+      console.log(JSON.stringify(serverData));
+      console.log('데이터가 0임')
+    });
+  }
+
+  getData();
+
+  let stocks = new Set();
+  function addToStock(){
+
+    let moveItem = Array.from(stocks);
+
+    setStockArray(itemData.filter(o => {
+      return moveItem.includes(o.key)
+    }))
+  }
+
+  function selectToggle(key){
+    stocks.add(key)
+    console.log(stocks);
+  }
 
   return (
     <Flex alignItems='center' justifyContent='center' flexDirection='column' maxH="100%">
@@ -44,6 +64,7 @@ const RegisterStock = () => {
           amount={30}
           captions={["메뉴", "가격"]}
           data={itemData}
+          onClick={selectToggle}
         />
         <Box w="100%" h="50vw" pt="300px">
           <Flex
@@ -66,6 +87,7 @@ const RegisterStock = () => {
               h='40px'
               cursor='pointer'
               _hover={{ filter: "brightness(120%)" }}
+              onClick={addToStock}
             >
             </Icon>
           </Flex>
@@ -97,7 +119,7 @@ const RegisterStock = () => {
           title={"등록될 재고"}
           amount={30}
           captions={["메뉴", "할인율", "가격", "만료일"]}
-          data={itemData}
+          data={stockArray}
         />
       </Grid>
     </Flex>

@@ -15,7 +15,7 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import React from "react";
 
-const ItemList = ({ title, amount, captions, data }) => {
+const ItemList = ({ title, amount, captions, data, onClick }) => {
   const textColor = useColorModeValue("gray.700", "white");
   const bgIcons = useColorModeValue("gray.100", "rgba(255, 255, 255, 0.5)");
 
@@ -47,6 +47,9 @@ const ItemList = ({ title, amount, captions, data }) => {
               transition='all .25s ease'
               _hover={{ bg: bgIcons }}
               borderRadius='15px'
+              onClick={()=>{
+                onClick(row.key)
+              }}
               >
                 <Td minWidth={{ sm: "250px" }} pl="0px" >
                   <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">

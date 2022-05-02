@@ -128,6 +128,7 @@ export const timelineData = [
 
 export const itemData = [
   {
+    key:1,
     foodImg: salad,
     name: "닭가슴살 샐러드",
     members: [],
@@ -135,6 +136,7 @@ export const itemData = [
     progression: 60,
   },
   {
+    key:2,
     foodImg: coke,
     name: "코카콜라 250ml x 1캔",
     members: [],
@@ -142,6 +144,7 @@ export const itemData = [
     progression: 10,
   },
   {
+    key:3,
     foodImg: milk,
     name: "서울우유 500ml",
     members: [],
