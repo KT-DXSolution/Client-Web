@@ -18,8 +18,8 @@ const RegisterStock = () => {
   const bgIcons = useColorModeValue("gray.100", "rgba(255, 255, 255, 0.5)");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [stockArray, setStockArray] = useState(null);
   const [items, setItems] = useState(null);
+  const [stockArray, setStockArray] = useState([]);
 
   useEffect(()=>{
     const fetchItems = async() =>{
@@ -30,16 +30,37 @@ const RegisterStock = () => {
 
         // loading 상태를 true로 바꿈
         setLoading(true);
-        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-        setItems(response.data);
+        axios.get('/v1/manager/store/6677/item',{
+          headers:{
+            Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+          }
+        }).then(response=>{
+          setItems(response.data.data.itemList);
+        });
       }
       catch(e){
        setError(e); 
       }
       setLoading(false);
     }
+
     fetchItems();
   },[]);
+
+  if(loading) return <div>로딩중</div>
+  if(error) return <div>에러발생</div>
+  if(!items) return null;
+  // return (
+  //   <>
+  //     <ul>
+  //       {items.map(user => (
+  //         <li key={user.id}>
+  //           {user.name}
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   </>
+  // );
 
   // let serverData;
   // function getData(){
@@ -63,7 +84,7 @@ const RegisterStock = () => {
 
     let moveItem = Array.from(stocks);
 
-    setStockArray(itemData.filter(o => {
+    setStockArray(items.filter(o => {
       return moveItem.includes(o.id)
     }))
   }
@@ -87,7 +108,7 @@ const RegisterStock = () => {
           title={"우리 가게 메뉴"}
           amount={30}
           captions={["메뉴", "가격"]}
-          data={itemData}
+          data={items}
           onClick={selectToggle}
         />
         <Box w="100%" h="50vw" pt="300px">

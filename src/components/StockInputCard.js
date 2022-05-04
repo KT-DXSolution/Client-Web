@@ -54,7 +54,7 @@ const StockInputCard = ({ title, amount, captions, data }) => {
                       fontWeight="bold"
                       minWidth="100%"
                     >
-                      {row.name}
+                      {row.name}({row.id})
                     </Text>
                   </Flex>
                 </Td>
