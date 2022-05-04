@@ -48,7 +48,7 @@ const ItemList = ({ title, amount, captions, data, onClick }) => {
               _hover={{ bg: bgIcons }}
               borderRadius='15px'
               onClick={()=>{
-                onClick(row.key)
+                onClick(row.id)
               }}
               >
                 <Td minWidth={{ sm: "250px" }} pl="0px" >
@@ -66,7 +66,7 @@ const ItemList = ({ title, amount, captions, data, onClick }) => {
                 </Td>
                 <Td>
                   <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-                    {/* {row.budget} */}
+                    {row.price}
                   </Text>
                 </Td>
               </Tr>

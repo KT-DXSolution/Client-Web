@@ -127,30 +127,10 @@ export const timelineData = [
 ];
 
 export const itemData = [
-  {
-    key:1,
-    foodImg: salad,
-    name: "닭가슴살 샐러드",
-    members: [],
-    budget: "₩5,000",
-    progression: 60,
-  },
-  {
-    key:2,
-    foodImg: coke,
-    name: "코카콜라 250ml x 1캔",
-    members: [],
-    budget: "₩1,000",
-    progression: 10,
-  },
-  {
-    key:3,
-    foodImg: milk,
-    name: "서울우유 500ml",
-    members: [],
-    budget: "₩1,000",
-    progression: 100,
-  }
+  {"id":1986,"name":"나눠먹는 와츄원","storeId":22378,"imageUrl":"https://img1.kakaocdn.net/cthumb/local/C74x74/?fname=https%3A%2F%2Fmud-kage.kakaocdn.net%2Fdn%2Fvdnme%2Fbtrmyj6C9Xi%2FhHU8BCCnpsSqkk9IWh0i1K%2Fimg.png","price":32000},
+  {"id":1987,"name":"바로먹는 와츄원","storeId":22378,"imageUrl":"https://img1.kakaocdn.net/cthumb/local/C74x74/?fname=https%3A%2F%2Fmud-kage.kakaocdn.net%2Fdn%2FcLtlOa%2Fbtrpu6BM9pc%2FTSMArCiZ30V1iOKFpjI7zK%2Fimg.png","price":31000},
+  {"id":1988,"name":"버라이어티팩","storeId":22378,"imageUrl":"https://img1.kakaocdn.net/cthumb/local/C74x74/?fname=https%3A%2F%2Fmud-kage.kakaocdn.net%2Fdn%2FP1GoD%2FbtqTLyb5wZX%2FfP3a5oB4lc9kBsiEXVKHM0%2Fimg.png","price":20000},
+  {"id":1989,"name":"핸드팩세트","storeId":22378,"imageUrl":"https://img1.kakaocdn.net/cthumb/local/C74x74/?fname=https%3A%2F%2Fmud-kage.kakaocdn.net%2Fdn%2FMvGWY%2FbtqTJTueWo0%2F0knaBl2cs8JhgK6L0xegVk%2Fimg.png","price":34000}
 ];
 
 export const tablesTableData = [

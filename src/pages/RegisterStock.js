@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { itemData } from "data/general";
 import axios from 'axios';
@@ -16,23 +16,47 @@ import StockInputCard from "components/StockInputCard"
 
 const RegisterStock = () => {
   const bgIcons = useColorModeValue("gray.100", "rgba(255, 255, 255, 0.5)");
-  const [stockArray, setStockArray] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [stockArray, setStockArray] = useState(null);
+  const [items, setItems] = useState(null);
 
-  let serverData;
-  function getData(){
-    axios({
-      method: 'get',
-      url: '/v1/manager/store/1/item',
-      headers : {'Authorization':'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA'}
-    })
-    .then(function (response) {
-      serverData = response.data.data.length;
-      console.log(JSON.stringify(serverData));
-      console.log('데이터가 0임')
-    });
-  }
+  useEffect(()=>{
+    const fetchItems = async() =>{
+      try{
+        // 요청이 시작할 때 error와 items 초기화
+        setError(null);
+        setItems(null);
 
-  getData();
+        // loading 상태를 true로 바꿈
+        setLoading(true);
+        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+        setItems(response.data);
+      }
+      catch(e){
+       setError(e); 
+      }
+      setLoading(false);
+    }
+    fetchItems();
+  },[]);
+
+  // let serverData;
+  // function getData(){
+  //   axios({
+  //     method: 'get',
+  //     url: '/v1/manager/store/22378/item',
+  //     headers : {'Authorization':'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA'}
+  //   })
+  //   .then(function (response) {
+  //     serverData = response.data.itemList;
+  //     console.log(JSON.stringify(serverData));
+  //     // setItemData(serverData)
+  //     setItems(ItemList)
+  //   });
+  // }
+
+  // getData();
 
   let stocks = new Set();
   function addToStock(){
@@ -40,7 +64,7 @@ const RegisterStock = () => {
     let moveItem = Array.from(stocks);
 
     setStockArray(itemData.filter(o => {
-      return moveItem.includes(o.key)
+      return moveItem.includes(o.id)
     }))
   }
 
@@ -50,7 +74,7 @@ const RegisterStock = () => {
   }
 
   return (
-    <Flex alignItems='center' justifyContent='center' flexDirection='column' maxH="100%">
+    <Flex alignItems='center' justifyContent='center' flexDirection='column' mt='7vh' maxH="80vh">
        <Grid
           templateColumns={{ sm: "1fr", lg: "1fr 0.1fr 2fr" }}
           templateRows={{ sm: "1fr auto", md: "1fr", lg: "1fr" }}

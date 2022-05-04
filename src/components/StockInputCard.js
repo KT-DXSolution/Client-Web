@@ -47,7 +47,7 @@ const StockInputCard = ({ title, amount, captions, data }) => {
               <Tr>
                 <Td minWidth={{ sm: "250px" }} pl="0px">
                   <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
-                    <Avatar src={row.foodImg} w="50px" borderRadius="12px" me="18px" />
+                    <Avatar src={row.imageUrl} w="50px" borderRadius="12px" me="18px" />
                     <Text
                       fontSize="md"
                       color={textColor}
@@ -59,11 +59,11 @@ const StockInputCard = ({ title, amount, captions, data }) => {
                   </Flex>
                 </Td>
                 <Td>
-                  <Input type="number"></Input>
+                  <Input type="number" id="discountRate" value="%"/>
                 </Td>
                 <Td>
                   <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-                    {row.budget}
+                    {row.price}
                   </Text>
                 </Td>
                 <Td>
