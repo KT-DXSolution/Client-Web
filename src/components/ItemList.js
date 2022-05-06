@@ -29,7 +29,7 @@ const ItemList = ({ title, data, onClick }) => {
           </Text>
         </Flex>
       </CardHeader>
-      <Table variant='simple' color={textColor}>
+      <Table variant='simple' color={textColor} >
         <Thead>
           <Tr my='.8rem' ps='0px' >
             <Th color='gray.400'/>
@@ -54,7 +54,7 @@ const ItemList = ({ title, data, onClick }) => {
               key={row.id}
               >
                 <Td>
-                <Checkbox/>
+                <Checkbox ml="0px"/>
                 </Td>
                 <Td minWidth={{ sm: "250px" }} pl="0px" >
                   <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
@@ -70,7 +70,7 @@ const ItemList = ({ title, data, onClick }) => {
                   </Flex>
                 </Td>
                 <Td pr="10px">
-                  <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
+                  <Text fontSize="md" mr="1rem" color={textColor} fontWeight="bold" >
                     {row.price}
                   </Text>
                 </Td>

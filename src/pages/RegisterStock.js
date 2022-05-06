@@ -35,6 +35,10 @@ const RegisterStock = () => {
             Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
           }
         }).then(response=>{
+          let items = response.data.data.itemList;
+          items.map(i=>{
+            i.price = numberWithCommas(i.price);
+          })
           setItems(response.data.data.itemList);
         });
       }
@@ -71,6 +75,10 @@ const RegisterStock = () => {
   function selectToggle(key){
     stocks.add(key)
     console.log(stocks);
+  }
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   return (
