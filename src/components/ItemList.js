@@ -9,13 +9,14 @@ import {
   Tr,
   useColorModeValue,
   Td,
-  Avatar
+  Avatar,
+  Checkbox
 } from "@chakra-ui/react";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import React from "react";
 
-const ItemList = ({ title, amount, captions, data, onClick }) => {
+const ItemList = ({ title, data, onClick }) => {
   const textColor = useColorModeValue("gray.700", "white");
   const bgIcons = useColorModeValue("gray.100", "rgba(255, 255, 255, 0.5)");
 
@@ -31,13 +32,13 @@ const ItemList = ({ title, amount, captions, data, onClick }) => {
       <Table variant='simple' color={textColor}>
         <Thead>
           <Tr my='.8rem' ps='0px' >
-            {captions.map((caption, idx) => {
-              return (
-                <Th color='gray.400' key={idx} ps={idx === 0 ? "0px" : null}>
-                  {caption}
-                </Th>
-              );
-            })}
+            <Th color='gray.400'/>
+            <Th color='gray.400'>
+              메뉴
+            </Th>
+            <Th color='gray.400'>
+              가격
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -50,7 +51,11 @@ const ItemList = ({ title, amount, captions, data, onClick }) => {
               onClick={()=>{
                 onClick(row.id)
               }}
+              key={row.id}
               >
+                <Td>
+                <Checkbox/>
+                </Td>
                 <Td minWidth={{ sm: "250px" }} pl="0px" >
                   <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
                     <Avatar src={row.imageUrl} w="50px" borderRadius="12px" me="18px" />
@@ -64,7 +69,7 @@ const ItemList = ({ title, amount, captions, data, onClick }) => {
                     </Text>
                   </Flex>
                 </Td>
-                <Td>
+                <Td pr="10px">
                   <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
                     {row.price}
                   </Text>

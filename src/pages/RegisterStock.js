@@ -50,34 +50,6 @@ const RegisterStock = () => {
   if(loading) return <div>로딩중</div>
   if(error) return <div>에러발생</div>
   if(!items) return null;
-  // return (
-  //   <>
-  //     <ul>
-  //       {items.map(user => (
-  //         <li key={user.id}>
-  //           {user.name}
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   </>
-  // );
-
-  // let serverData;
-  // function getData(){
-  //   axios({
-  //     method: 'get',
-  //     url: '/v1/manager/store/22378/item',
-  //     headers : {'Authorization':'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA'}
-  //   })
-  //   .then(function (response) {
-  //     serverData = response.data.itemList;
-  //     console.log(JSON.stringify(serverData));
-  //     // setItemData(serverData)
-  //     setItems(ItemList)
-  //   });
-  // }
-
-  // getData();
 
   let stocks = new Set();
   function addToStock(){
@@ -86,6 +58,13 @@ const RegisterStock = () => {
 
     setStockArray(items.filter(o => {
       return moveItem.includes(o.id)
+    }).map(res=>{
+      res.discountRate=10
+      res.quanty=5
+      res.expiredAt='2022-05-28'
+      res.quantity=1
+      console.log(res)
+      return res;
     }))
   }
 
@@ -95,19 +74,17 @@ const RegisterStock = () => {
   }
 
   return (
-    <Flex alignItems='center' justifyContent='center' flexDirection='column' mt='7vh' maxH="80vh">
+    <Flex alignItems='center' justifyContent='center' flexDirection='column'>
        <Grid
           templateColumns={{ sm: "1fr", lg: "1fr 0.1fr 2fr" }}
           templateRows={{ sm: "1fr auto", md: "1fr", lg: "1fr" }}
           gap='50px'
-          style={{width:"90vw", height:"57vw"}}
+          style={{width:"100rem", height:"40rem"}}
           pt='20px'
           mb='50px'
           >
         <ItemList
           title={"우리 가게 메뉴"}
-          amount={30}
-          captions={["메뉴", "가격"]}
           data={items}
           onClick={selectToggle}
         />
@@ -118,10 +95,8 @@ const RegisterStock = () => {
                 w='70px'
                 h='70px'
                 borderRadius='15px'
-                // border='1px solid lightgray'
                 cursor='pointer'
                 transition='all .25s ease'
-                _hover={{ bg: bgIcons }}
                 mb='24px'
                 bg="white"
                 boxShadow='lg'
