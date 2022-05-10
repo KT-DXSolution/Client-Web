@@ -47,7 +47,7 @@ const StockInputCard = ({ title, data }) => {
       , quantity:param.quantity
     }
     console.log(body);
-    axios.post(`/v1/manager/item/${param.id}/stock`, body, config).then(res=>{
+    axios.post(`/api/v1/manager/item/${param.id}/stock`, body, config).then(res=>{
       console.log(res);
       if(res.status==201){
         alert('등록되었습니다');
