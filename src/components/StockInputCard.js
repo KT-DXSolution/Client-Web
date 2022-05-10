@@ -65,10 +65,10 @@ const StockInputCard = ({ title, data }) => {
   }
 
   return (
-    <Card p='36px' alignItems='center' overflowX={{ sm: "scroll", xl: "hidden" }}>
-      <CardHeader p='12px 0px 28px 10px'>
+    <Card p='0px' height='900px' alignItems='center'>
+      <CardHeader p='20px 0px 0px 20px'>
         <Flex justify='space-between' align='center' mb='1rem' w='100%'>
-          <Text fontSize='lg' color={textColor} fontWeight='bold' pb='.5rem' style={{padding:"0"}}>
+          <Text fontSize='lg' color={textColor} fontWeight='bold' pb='.5rem' style={{paddingTop:"10px"}}>
             {title}
           </Text>
         </Flex>

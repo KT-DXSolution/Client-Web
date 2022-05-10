@@ -1,6 +1,6 @@
 import OrdersOverview from "components/OrdersOverview";
 import ObjectList from "components/ObjectList";
-import { dashboardTableData, timelineData } from "data/general";
+import { timelineData } from "data/general";
 import {
   Flex,
   Grid
@@ -14,10 +14,9 @@ const Home = () => {
           gap='24px'
           style={{width:"85vw"}}>
           <ObjectList
-            title={"물품"}
+            title={"우리 가게 재고 현황"}
             amount={30}
-            captions={["메뉴", "관심있는 고객", "가격", "판매율"]}
-            data={dashboardTableData}
+            captions={["메뉴", "주문 고객", "가격", "판매율", "마감시간"]}
           />  
           
           <OrdersOverview

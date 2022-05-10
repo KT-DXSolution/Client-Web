@@ -9,15 +9,16 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
+import { MdRowing } from "react-icons/md";
 
 function DashboardTableRow(props) {
-  const { name, members, budget, progression, foodImg} = props;
+  const { key, name, price, discountPrice, progression, imageUrl, expiredAt} = props;
   const textColor = useColorModeValue("gray.700", "white");
   return (
-    <Tr>
+  <Tr key={key}>
       <Td minWidth={{ sm: "250px" }} pl="0px">
         <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
-          <Avatar src={foodImg} w="50px" borderRadius="12px" me="18px" />
+          <Avatar src={imageUrl} w="50px" borderRadius="12px" me="18px" />
           <Text
             fontSize="md"
             color={textColor}
@@ -30,7 +31,7 @@ function DashboardTableRow(props) {
       </Td>
 
       <Td>
-        <AvatarGroup size="sm">
+        {/* <AvatarGroup size="sm">
           {members.map((member) => {
             return (
               <Avatar
@@ -41,11 +42,14 @@ function DashboardTableRow(props) {
               />
             );
           })}
-        </AvatarGroup>
+        </AvatarGroup> */}
       </Td>
       <Td>
+      <Text fontSize="md" color='lightgray' pb=".5rem">
+          {price}
+        </Text>
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-          {budget}
+          {' -> '+ discountPrice}
         </Text>
       </Td>
       <Td>
@@ -63,6 +67,9 @@ function DashboardTableRow(props) {
             borderRadius="15px"
           />
         </Flex>
+      </Td>
+      <Td>
+        {expiredAt}
       </Td>
     </Tr>
   );

@@ -86,7 +86,7 @@ const RegisterStock = () => {
           templateColumns={{ sm: "1fr", lg: "1fr 0.1fr 2fr" }}
           templateRows={{ sm: "1fr auto", md: "1fr", lg: "1fr" }}
           gap='50px'
-          style={{width:"100rem", height:"40rem"}}
+          style={{width:"100rem"}}
           pt='20px'
           mb='50px'
           >

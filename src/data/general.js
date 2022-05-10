@@ -32,48 +32,57 @@ import {
 import { SiDropbox } from "react-icons/si";
 
 export const dashboardTableData = [
+  // {
+  //     "stockId": 805,
+  //     "itemId": 2076,
+  //     "quantity": 3,
+  //     "registeredQuantity": 10,
+  //     "imageUrl": "https://img1.kakaocdn.net/cthumb/local/C74x74/?fname=https%3A%2F%2Fmud-kage.kakaocdn.net%2Fdn%2FbLw9RB%2FbtqB5iK9XxV%2FlbCO7kXt8mp81kuKOCrmc1%2Fimg.png",
+  //     "discountRate": 50,
+  //     "expiredAt": "2022-05-09T00:00:00",
+  //     "createdAt": "2022-04-29T10:04:26"
+  // },
+  // {
+  //     "stockId": 806,
+  //     "itemId": 2077,
+  //     "quantity": 6,
+  //     "registeredQuantity": 10,
+  //     "imageUrl": "https://img1.kakaocdn.net/cthumb/local/C74x74/?fname=https%3A%2F%2Fmud-kage.kakaocdn.net%2Fdn%2FeiU01X%2FbtqB2HSB2TK%2FWZW9aOzfgEc8DlEXF64HQ1%2Fimg.png",
+  //     "discountRate": 50,
+  //     "expiredAt": "2022-05-02T00:00:00",
+  //     "createdAt": "2022-04-29T10:04:26"
+  // },
   {
-    foodImg: salad,
-    name: "닭가슴살 샐러드",
+    "stockId": 806,
+    "itemId": 2077,
+    "quantity": 6,
+    "registeredQuantity": 10,
+    imageUrl: "https://img1.kakaocdn.net/cthumb/local/C74x74/?fname=https%3A%2F%2Fmud-kage.kakaocdn.net%2Fdn%2FeiU01X%2FbtqB2HSB2TK%2FWZW9aOzfgEc8DlEXF64HQ1%2Fimg.png",
     members: [avatar1, avatar2, avatar3, avatar4, avatar5],
     budget: "₩5,000",
     progression: 60,
   },
   {
-    foodImg: coke,
+    imageUrl: coke,
     name: "코카콜라 250ml x 1캔",
     members: [avatar3, avatar2],
     budget: "₩1,000",
     progression: 10,
   },
   {
-    foodImg: milk,
+    imageUrl: milk,
     name: "서울우유 500ml",
     members: [avatar10, avatar4],
     budget: "₩1,000",
     progression: 100,
   },
   {
-    foodImg: salad,
+    imageUrl: salad,
     name: "닭가슴살 샐러드",
     members: [avatar2, avatar3, avatar7, avatar8],
     budget: "₩5,000",
     progression: 100,
-  },
-  {
-    foodImg: coke,
-    name: "코카콜라 250ml x 1캔",
-    members: [avatar10, avatar3, avatar7, avatar2, avatar8],
-    budget: "₩5,000",
-    progression: 25,
-  },
-  {
-    foodImg: milk,
-    name: "서울우유 500ml",
-    members: [avatar9, avatar3, avatar2],
-    budget: "₩5,000",
-    progression: 40,
-  },
+  }
 ];
 
 export const timelineData = [
