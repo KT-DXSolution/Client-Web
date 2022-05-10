@@ -43,7 +43,7 @@ const StockInputCard = ({ title, data }) => {
 
     let body = {
       discountRate:param.discountRate
-      , expiredAt:param.expiredAt+'T00:00:00'
+      , expiredAt:param.expiredAt+'T00:00:00.000Z'
       , quantity:param.quantity
     }
     console.log(body);
@@ -125,7 +125,7 @@ const StockInputCard = ({ title, data }) => {
                   </InputGroup>
                 </Td>
                 <Td>
-                <NumberInput defaultValue={row.quanty} min={1} max={100} style={{width:"100px"}} onChange={(e)=>onChangeQuanty(e,row.id)}>
+                <NumberInput defaultValue={row.quantity} min={1} max={100} style={{width:"100px"}} onChange={(e)=>onChangeQuanty(e,row.id)}>
                   <NumberInputField />
                   <NumberInputStepper>
                     <NumberIncrementStepper />

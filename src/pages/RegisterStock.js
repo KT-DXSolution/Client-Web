@@ -63,7 +63,7 @@ const RegisterStock = () => {
       return moveItem.includes(o.id)
     }).map(res=>{
       res.discountRate=10
-      res.quanty=5
+      res.quantity=5
       res.expiredAt='2022-05-28'
       res.quantity=1
       console.log(res)
