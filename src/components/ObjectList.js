@@ -28,6 +28,7 @@ const ObjectList = ({ title, captions, data}) => {
   useEffect(()=>{
     let items = [];
     let stocks = [];
+    let orders = [];
     const fetchItems = async() =>{
       try {
         // 요청이 시작할 때 error와 items 초기화
@@ -73,10 +74,37 @@ const ObjectList = ({ title, captions, data}) => {
       }
     }
 
-    Promise.all([fetchItems(), fetchStocks()]).then(responses=>{
-      [items, stocks] = responses;
-      
-      stocks.forEach(stock=> Object.assign(stock,items.find(item=>item.id===stock.itemId)))
+    const fetchOrders = async() => {
+      try {
+        setError(null);
+        setLoading(true);
+        
+        return axios.get('/api/v1/manager/store/6677/order',{
+          headers:{
+            Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+          }
+        }).then(response=>{
+          console.log(response.data.data)
+          return response.data.data;
+        });
+      }
+      catch(e){
+       setError(e); 
+      }
+      finally{
+        setLoading(false);
+      }
+    }
+
+    Promise.all([fetchItems(), fetchStocks(), fetchOrders()]).then(responses=>{
+      [items, stocks, orders] = responses;
+      let purchaserObj = [];
+      stocks.forEach(stock=> {
+        purchaserObj = orders.filter(order=> order.stockId===stock.stockId)
+        if(stock.stockId==805)
+        console.log(purchaserObj)
+        Object.assign(stock, items.find(item=>item.id===stock.itemId)).purchasers = purchaserObj;
+      })
 
       console.log(stocks);
       setDatas(stocks)
@@ -129,6 +157,7 @@ const ObjectList = ({ title, captions, data}) => {
                 progression={row.quantity/row.registeredQuantity*100}
                 imageUrl={row.imageUrl}
                 expiredAt={row.expiredAt.replace('T',' ')}
+                purchasers={row.purchasers}
               />
             );
           })}
