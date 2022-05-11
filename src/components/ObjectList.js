@@ -115,6 +115,15 @@ const ObjectList = ({ title, captions, data}) => {
   if(loading) return <div>로딩중</div>
   if(error) return <div>에러발생</div>
 
+  const cardStyleTemplate={
+    padding:'0px', 
+    margin:'0px', 
+    height:'750px', 
+    overflowY:'scroll', 
+    overflowX:'auto',
+    WebkitScrollBar:'display:none'
+  }
+
   return (
     <Card p='36px' overflowX={{ sm: "scroll", xl: "hidden" }}>
       <CardHeader p='12px 0px 28px 10px'>
@@ -134,35 +143,37 @@ const ObjectList = ({ title, captions, data}) => {
           </Link>
         </Flex>
       </CardHeader>
-      <Table variant='simple' color={textColor} >
-        <Thead>
-          <Tr my='.8rem' ps='0px'>
-            {captions.map((caption, idx) => {
+      <Card style={cardStyleTemplate}>
+        <Table variant='simple' color={textColor} >
+          <Thead>
+            <Tr my='.8rem' ps='0px'>
+              {captions.map((caption, idx) => {
+                return (
+                  <Th color='gray.400' key={idx} ps={idx === 0 ? "0px" : null}>
+                    {caption}
+                  </Th>
+                );
+              })}
+            </Tr>
+          </Thead>
+          <Tbody  overflow='auto' overflowX='hidden' height='700px'>
+            {datas.map((row) => {
               return (
-                <Th color='gray.400' key={idx} ps={idx === 0 ? "0px" : null}>
-                  {caption}
-                </Th>
+                <DashboardTableRow
+                  key={row.stockId}
+                  name={row.name}
+                  price={row.price}
+                  discountPrice={row.price*row.discountRate/100}
+                  progression={row.quantity/row.registeredQuantity*100}
+                  imageUrl={row.imageUrl}
+                  expiredAt={row.expiredAt.replace('T',' ')}
+                  purchasers={row.purchasers}
+                />
               );
             })}
-          </Tr>
-        </Thead>
-        <Tbody  overflow='auto' overflowX='hidden' height='700px'>
-          {datas.map((row) => {
-            return (
-              <DashboardTableRow
-                key={row.stockId}
-                name={row.name}
-                price={row.price}
-                discountPrice={row.price*row.discountRate/100}
-                progression={row.quantity/row.registeredQuantity*100}
-                imageUrl={row.imageUrl}
-                expiredAt={row.expiredAt.replace('T',' ')}
-                purchasers={row.purchasers}
-              />
-            );
-          })}
-        </Tbody>
-      </Table>
+          </Tbody>
+        </Table>
+      </Card>
     </Card>
   );
 };

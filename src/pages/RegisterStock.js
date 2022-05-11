@@ -12,6 +12,7 @@ import {
  } from "@chakra-ui/react";
 import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 import ItemList from "components/ItemList"
+import Card from "components/Card/Card.js";
 import StockInputCard from "components/StockInputCard"
 
 const RegisterStock = () => {
@@ -90,11 +91,14 @@ const RegisterStock = () => {
           pt='20px'
           mb='50px'
           >
+          <Card>
+            
         <ItemList
           title={"우리 가게 메뉴"}
           data={items}
           onClick={selectToggle}
         />
+          </Card>
         <Box w="100%" h="50vw" pt="300px">
           <Flex
                 justify='center'

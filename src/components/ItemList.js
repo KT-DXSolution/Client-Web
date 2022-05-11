@@ -29,7 +29,7 @@ const ItemList = ({ title, data, onClick }) => {
           </Text>
         </Flex>
       </CardHeader>
-      <Card p='0px' overflow='auto' overflowX='hidden'>
+      <Card p='0px' overflowX='auto'>
         <Table variant='simple' color={textColor} maxWidth='100%'>
           <Thead>
             <Tr my='.8rem' ps='0px' >
