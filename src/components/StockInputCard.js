@@ -39,31 +39,23 @@ const StockInputCard = ({ title, data }) => {
       }
     }
     
-    let body = {};
-    let result = [];
+    let body = [];
 
     data.forEach(param => {
-      body = {
+      body.push({
+        itemId:param.id,
         discountRate:param.discountRate
         , expiredAt:param.expiredAt+'T00:00:00'
         , quantity:param.quantity
-      }
-      console.log(body);
-      axios.post(`/api/v1/manager/item/${param.id}/stock`, body, config).then(res=>{
-        console.log(res);
-        if(res.status==201){
-          result.push(res.status);
-        }
       })
-      // TODO : API array request 로 수정후 재수정 필요
-      if(result.length==data.length){
+    });
+    console.log(body);
+    axios.post(`/api/v1/manager/stocks`, body, config).then(res=>{
+      if(res.status===201){
         alert('등록되었습니다');
         navigate("/")
       }
-      else {
-        alert('등록시 오류가 발생하였습니다.')
-      }
-    });
+    })
   }
 
   const onChangeDiscountRate = (e,idx) => {
