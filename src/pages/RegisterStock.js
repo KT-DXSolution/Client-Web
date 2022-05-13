@@ -91,7 +91,7 @@ const RegisterStock = () => {
           pt='20px'
           mb='50px'
           >
-          <Card>
+          <Card padding="0px" width="100%">
             
         <ItemList
           title={"우리 가게 메뉴"}
