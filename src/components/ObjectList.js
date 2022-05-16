@@ -25,6 +25,10 @@ const ObjectList = ({ title, captions, data}) => {
   const [error, setError] = useState(null);
   const [datas, setDatas] = useState([]);//dashboardTableData
 
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
   useEffect(()=>{
     let items = [];
     let stocks = [];
@@ -106,6 +110,7 @@ const ObjectList = ({ title, captions, data}) => {
         Object.assign(stock, items.find(item=>item.id===stock.itemId)).purchasers = purchaserObj;
       })
 
+      stocks.sort((a,b)=>b.purchasers.length-a.purchasers.length)
       console.log(stocks);
       setDatas(stocks)
     })
@@ -162,11 +167,12 @@ const ObjectList = ({ title, captions, data}) => {
                 <DashboardTableRow
                   key={row.stockId}
                   name={row.name}
-                  price={row.price}
-                  discountPrice={row.price*row.discountRate/100}
+                  price={numberWithCommas(row.price)}
+                  discountPrice={numberWithCommas(row.price*row.discountRate/100)}
                   progression={row.quantity/row.registeredQuantity*100}
                   imageUrl={row.imageUrl}
-                  expiredAt={row.expiredAt.replace('T',' ')}
+                  // expiredAt={row.expiredAt.replace('T',' ')}
+                  expiredAt={row.expiredAt.substr(0,10)}
                   purchasers={row.purchasers}
                 />
               );

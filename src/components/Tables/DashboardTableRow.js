@@ -48,8 +48,8 @@ function DashboardTableRow(props) {
       <Text fontSize="md" color='lightgray' pb=".5rem">
           {price}
         </Text>
-        <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem" paddingLeft='20px'>
-          {`ㅡ> `+ discountPrice}
+        <Text fontSize="lg" color={textColor} fontWeight="bold" pb=".5rem" paddingLeft='20px'>
+          {`→ `+ discountPrice}
         </Text>
       </Td>
       <Td>
