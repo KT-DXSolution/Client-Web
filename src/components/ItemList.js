@@ -1,4 +1,3 @@
-// Chakra imports
 import {
   Flex,
   Table,
@@ -7,19 +6,15 @@ import {
   Th,
   Thead,
   Tr,
-  useColorModeValue,
-  Td,
-  Avatar,
-  Checkbox
+  useColorModeValue
 } from "@chakra-ui/react";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import React from "react";
+import Item from "components/Item.js"
 
 const ItemList = ({ title, data, onClick }) => {
   const textColor = useColorModeValue("gray.700", "white");
-  const bgIcons = useColorModeValue("gray.100", "rgba(255, 255, 255, 0.5)");
-
   return (
     <Card p='10px' height='900px' alignItems='center'>
       <CardHeader p='20px 0px 0px 20px'>
@@ -33,7 +28,6 @@ const ItemList = ({ title, data, onClick }) => {
         <Table variant='simple' color={textColor} maxWidth='100%'>
           <Thead>
             <Tr my='.8rem' ps='0px' >
-              <Th color='gray.400'/>
               <Th color='gray.400'>
                 메뉴
               </Th>
@@ -45,37 +39,9 @@ const ItemList = ({ title, data, onClick }) => {
           <Tbody>
             {data.map((row) => {
               return (
-                <Tr cursor='pointer'
-                transition='all .25s ease'
-                _hover={{ bg: bgIcons }}
-                borderRadius='15px'
-                onClick={()=>{
-                  onClick(row.id)
-                }}
-                key={row.id}
-                >
-                  <Td>
-                  <Checkbox ml="0px"/>
-                  </Td>
-                  <Td minWidth={{ sm: "250px" }} pl="0px" >
-                    <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
-                      <Avatar src={row.imageUrl} w="50px" borderRadius="12px" me="18px" />
-                      <Text
-                        fontSize="md"
-                        color={textColor}
-                        fontWeight="bold"
-                        minWidth="100%"
-                      >
-                        {row.name}
-                      </Text>
-                    </Flex>
-                  </Td>
-                  <Td pr="10px">
-                    <Text fontSize="md" mr="1rem" color={textColor} fontWeight="bold" >
-                      {row.price}
-                    </Text>
-                  </Td>
-                </Tr>
+                <>
+                  <Item key={row.id} data={row} onClick={onClick}/>
+                </>
               );
             })}
           </Tbody>

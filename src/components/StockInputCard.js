@@ -12,7 +12,6 @@ import {
   Td,
   Avatar,
   Input,
-  Checkbox,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
@@ -78,7 +77,6 @@ const StockInputCard = ({ title, data }) => {
       <Table variant='simple' color={textColor}>
         <Thead>
           <Tr my='.8rem'>
-            <Th color='gray.400'/>
             <Th color='gray.400'>
               메뉴
             </Th>
@@ -100,10 +98,7 @@ const StockInputCard = ({ title, data }) => {
           {data.map((row) => {
             return (
               <Tr key={row.id} >
-                <Td>
-                  <Checkbox/>
-                </Td>
-                <Td minWidth={{ sm: "250px" }} pl="0px">
+                <Td minWidth={{ sm: "250px" }}>
                   <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
                     <Avatar src={row.imageUrl} w="50px" borderRadius="12px" me="18px" />
                     <Text

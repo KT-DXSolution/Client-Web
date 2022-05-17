@@ -1,7 +1,6 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { itemData } from "data/general";
 import axios from 'axios';
 import { 
   Flex, 
@@ -21,6 +20,7 @@ const RegisterStock = () => {
   const [error, setError] = useState(null);
   const [items, setItems] = useState(null);
   const [stockArray, setStockArray] = useState([]);
+  const stocks = useRef(new Set())
 
   useEffect(()=>{
     const fetchItems = async() =>{
@@ -55,25 +55,25 @@ const RegisterStock = () => {
   if(error) return <div>에러발생</div>
   if(!items) return null;
 
-  let stocks = new Set();
   function addToStock(){
 
-    let moveItem = Array.from(stocks);
-
+    let moveItem = Array.from(stocks.current);
+    console.log('moveItem :',moveItem)
     setStockArray(items.filter(o => {
       return moveItem.includes(o.id)
     }).map(res=>{
       res.discountRate=10
-      res.quantity=5
-      res.expiredAt='2022-05-28'
+      res.expiredAt='2022-05-31'
       res.quantity=1
-      console.log(res)
       return res;
     }))
   }
 
   function selectToggle(key){
-    stocks.add(key)
+    if(stocks.current.has(key)) stocks.current.delete(key)
+    else {
+      stocks.current.add(key)
+    }
     console.log(stocks);
   }
 
