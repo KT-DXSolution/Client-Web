@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
     "framer-motion": "^4.1.17",
+    "gh-pages": "^4.0.0",
     "immutable": "^4.0.0",
     "open-color": "^1.9.1",
     "react": "^18.0.0",
@@ -27,7 +28,9 @@
     "start": "NODE_PATH=src react-scripts start",
     "build": "NODE_PATH=src react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -48,4 +51,5 @@
     ]
   },
   "proxy": "http://175.209.183.195:8001"
+  ,"homepage" : "https://KT-DXSolution.github.io/Client-Web/"
 }
