@@ -14,8 +14,8 @@
     "gh-pages": "^4.0.0",
     "immutable": "^4.0.0",
     "open-color": "^1.9.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-redux": "^7.2.7",
     "react-router-dom": "^6.2.2",
@@ -25,10 +25,8 @@
     "styled-components": "^5.3.5"
   },
   "scripts": {
-    "start": "NODE_PATH=src react-scripts start",
-    "build": "NODE_PATH=src react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "deploy": "gh-pages -d build",
     "predeploy": "npm run build"
   },
@@ -49,7 +47,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://175.209.183.195:8001"
+  }
   ,"homepage" : "https://KT-DXSolution.github.io/Client-Web/"
 }

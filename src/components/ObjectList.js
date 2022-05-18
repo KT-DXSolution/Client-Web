@@ -40,10 +40,11 @@ const ObjectList = ({ title, captions, data}) => {
 
         // loading 중
         setLoading(true);
-        return axios.get('/api/v1/manager/store/6677/item',{
+        return axios.get('http://175.209.183.195:8001/api/v1/manager/store/6677/item',{
           headers:{
             Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
-          }
+          },
+          referrerPolicy: 'no-referrer-when-downgrade'
         }).then(response=>{
           return response.data.data.itemList;
         });
@@ -62,10 +63,11 @@ const ObjectList = ({ title, captions, data}) => {
         setError(null);
         setLoading(true);
         
-        return axios.get('/api/v1/manager/store/6677/stock',{
+        return axios.get('http://175.209.183.195:8001/api/v1/manager/store/6677/stock',{
           headers:{
             Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
           }
+          , referrerPolicy: 'no-referrer-when-downgrade'
         }).then(response=>{
           return response.data.data;
         });
@@ -83,10 +85,11 @@ const ObjectList = ({ title, captions, data}) => {
         setError(null);
         setLoading(true);
         
-        return axios.get('/api/v1/manager/store/6677/order',{
+        return axios.get('http://175.209.183.195:8001/api/v1/manager/store/6677/order',{
           headers:{
             Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
           }
+          , referrerPolicy: 'no-referrer-when-downgrade'
         }).then(response=>{
           console.log(response.data.data)
           return response.data.data;

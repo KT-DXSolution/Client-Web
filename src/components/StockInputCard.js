@@ -49,7 +49,7 @@ const StockInputCard = ({ title, data }) => {
       })
     });
     console.log(body);
-    axios.post(`/api/v1/manager/stocks`, body, config).then(res=>{
+    axios.post(`http://175.209.183.195:8001/api/v1/manager/stocks`, body, config).then(res=>{
       if(res.status===201){
         alert('등록되었습니다');
         navigate("/")
