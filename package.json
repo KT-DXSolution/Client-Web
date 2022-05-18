@@ -10,6 +10,7 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
+    "firebase": "^9.8.1",
     "framer-motion": "^4.1.17",
     "gh-pages": "^4.0.0",
     "immutable": "^4.0.0",
@@ -47,6 +48,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
-  ,"homepage" : "https://KT-DXSolution.github.io/Client-Web/"
+  },
+  "homepage": "https://KT-DXSolution.github.io/Client-Web/"
 }
