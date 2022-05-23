@@ -68,7 +68,7 @@ function DashboardTableRow(props) {
           />
         </Flex>
       </Td>
-      <Td>
+      <Td minWidth={{ sm: "150px" }} >
         {expiredAt}
       </Td>
     </Tr>

@@ -108,8 +108,6 @@ const ObjectList = ({ title, captions, data}) => {
       let purchaserObj = [];
       stocks.forEach(stock=> {
         purchaserObj = orders.filter(order=> order.stockId===stock.stockId)
-        if(stock.stockId==805)
-        console.log(purchaserObj)
         Object.assign(stock, items.find(item=>item.id===stock.itemId)).purchasers = purchaserObj;
       })
 

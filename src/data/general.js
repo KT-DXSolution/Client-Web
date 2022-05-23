@@ -88,7 +88,7 @@ export const dashboardTableData = [
 export const timelineData = [
   {
     logo: FaBell,
-    title: "[새 리뷰 알림] 양념치킨 도시락",
+    title: "[주문 알림] 양념치킨 도시락 2개",
     date: "22 DEC 7:20 PM",
     color: "teal.300",
   },
@@ -132,7 +132,26 @@ export const timelineData = [
     title: "[입금 알림] 페퍼로니 냉동 피자",
     date: "21 DEC 11:21 PM",
     color: "orange",
-  }
+  },
+  {
+    logo: FaHtml5,
+    title: "[입금 알림] 페퍼로니 냉동 피자",
+    date: "21 DEC 11:21 PM",
+    color: "orange",
+  },
+  {
+    logo: FaHtml5,
+    title: "[입금 알림] 페퍼로니 냉동 피자",
+    date: "21 DEC 11:21 PM",
+    color: "orange",
+  },
+  {
+    logo: FaHtml5,
+    title: "[입금 알림] 페퍼로니 냉동 피자",
+    date: "21 DEC 11:21 PM",
+    color: "orange",
+  },
+
 ];
 
 export const itemData = [
