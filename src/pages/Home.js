@@ -14,7 +14,6 @@ const Home = () => {
           style={{width:"85vw"}}>
           <ObjectList
             title={"우리 가게 재고 현황"}
-            amount={30}
             captions={["메뉴", "주문 고객", "가격", "판매율", "마감시간"]}
           />  
           

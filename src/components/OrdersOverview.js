@@ -107,7 +107,7 @@ const OrdersOverview = ({ title, amount}) => {
         date = order.createdAt.substr(5,11).replace('T',' ').replace('-', '/');
         overviewObj.push({
           logo:logoObj[idx%4],
-          title: `[주문] ${name} 님 ${itemName} ${quantity}개`,
+          title: `[주문] ${itemName} ${quantity}개 (${name})`,
           date : date,
           color:colorObj[idx%4]
         })

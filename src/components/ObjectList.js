@@ -16,10 +16,9 @@ import CardHeader from "components/Card/CardHeader.js";
 import DashboardTableRow from "components/Tables/DashboardTableRow";
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
-import { dashboardTableData } from "data/general";
 import axios from 'axios';
 
-const ObjectList = ({ title, captions, data}) => {
+const ObjectList = ({ title, captions}) => {
   const textColor = useColorModeValue("gray.700", "white");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -134,9 +133,19 @@ const ObjectList = ({ title, captions, data}) => {
     <Card p='36px' overflowX={{ sm: "scroll", xl: "hidden" }}>
       <CardHeader p='12px 0px 28px 10px'>
         <Flex justify='space-between' align='center' mb='1rem' w='100%'>
+          <Flex direction='column'>
+
           <Text fontSize='lg' color={textColor} fontWeight='bold' pb='.5rem' style={{padding:"0"}}>
             {title}
           </Text>
+          <Text fontSize='sm' color='gray.400' fontWeight='normal'>
+            현재 등록된 재고 수량{" "}
+            <Text fontWeight='bold' as='span' color='teal.300'>
+              {`${datas.length}`}
+            </Text>{" "}
+            건.
+          </Text>
+          </Flex>
           <Link to="/registerStock">
             <Button
               colorScheme='teal'
