@@ -1,6 +1,5 @@
 import OrdersOverview from "components/OrdersOverview";
 import ObjectList from "components/ObjectList";
-import { timelineData } from "data/general";
 import {
   Flex,
   Grid
@@ -22,7 +21,6 @@ const Home = () => {
           <OrdersOverview
               title={"실시간 주문 현황"}
               amount={30}
-              data={timelineData}
             />
           </Grid>
         </Flex>

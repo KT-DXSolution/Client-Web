@@ -7,11 +7,18 @@ import CardHeader from "components/Card/CardHeader";
 import TimelineRow from "components/Tables/TimelineRow";
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import {
+  FaBell,
+  FaCreditCard,
+  FaHtml5,
+  FaShoppingCart,
+} from "react-icons/fa";
 
-const OrdersOverview = ({ title, amount, data }) => {
+const OrdersOverview = ({ title, amount}) => {
   const textColor = useColorModeValue("gray.700", "white");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [data, setData] = useState([]);
 
   useEffect(()=>{
     let items = [];
@@ -20,10 +27,7 @@ const OrdersOverview = ({ title, amount, data }) => {
 
     const fetchItems = async() =>{
       try {
-        // 요청이 시작할 때 error와 items 초기화
         setError(null);
-
-        // loading 중
         setLoading(true);
         return axios.get('http://175.209.183.195:8001/api/v1/manager/store/6677/item',{
           headers:{
@@ -91,13 +95,27 @@ const OrdersOverview = ({ title, amount, data }) => {
     Promise.all([fetchItems(), fetchStocks(), fetchOrders()]).then(responses=>{
       [items, stocks, orders] = responses;
       let overviewObj = [];
-      orders.sort((a,b)=>b.id-a.id)
-      
-      console.log('주문현황', orders);
-
+      let name, itemName, quantity, date;
+      let idx = 0;
+      let logoObj = [FaBell, FaHtml5, FaShoppingCart, FaCreditCard];
+      let colorObj = ['teal.300', 'orange', 'blue.400', 'orange.300'];
+      orders.sort((a,b)=>b.id-a.id);
+      orders.map(order=>{
+        name = order.purchaser.name;
+        itemName = items.find(it=> it.id=stocks.find(el=>el.stockId=order.stockId).itemId).name;
+        quantity = order.quantity;
+        date = order.createdAt.substr(5,11).replace('T',' ').replace('-', '/');
+        overviewObj.push({
+          logo:logoObj[idx%4],
+          title: `[주문] ${name} 님 ${itemName} ${quantity}개`,
+          date : date,
+          color:colorObj[idx%4]
+        })
+        idx++;
+      })
+      console.log('주문현황', overviewObj);
+      setData(overviewObj);
     })
-
-
   },[])
 
   return (
