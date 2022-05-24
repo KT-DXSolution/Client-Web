@@ -6,7 +6,7 @@ import {
 } from "@chakra-ui/react";
 const Home = () => {
   return (
-      <Flex flexDirection='column' pt={{ base: "120px", md: "10px" }}  style={{alignItems:"center"}}>
+      <Flex flexDirection='column' pt={{ md: "10px" }}  style={{alignItems:"center"}}>
         <Grid
           templateColumns={{ sm: "1fr", md: "1fr 1fr", lg: "2fr 1fr" }}
           templateRows={{ sm: "1fr auto", md: "1fr", lg: "1fr" }}

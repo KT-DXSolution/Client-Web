@@ -24,6 +24,8 @@ const ObjectList = ({ title, captions}) => {
   const [error, setError] = useState(null);
   const [datas, setDatas] = useState([]);//dashboardTableData
 
+  const ceoSeq = sessionStorage.getItem('ceoSeq');
+
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
@@ -39,7 +41,7 @@ const ObjectList = ({ title, captions}) => {
 
         // loading 중
         setLoading(true);
-        return axios.get('https://175.209.183.195/api/v1/manager/store/6677/item',{
+        return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/item`,{
           headers:{
             Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
           },
@@ -62,7 +64,7 @@ const ObjectList = ({ title, captions}) => {
         setError(null);
         setLoading(true);
         
-        return axios.get('https://175.209.183.195/api/v1/manager/store/6677/stock',{
+        return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/stock`,{
           headers:{
             Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
           }
@@ -84,7 +86,7 @@ const ObjectList = ({ title, captions}) => {
         setError(null);
         setLoading(true);
         
-        return axios.get('https://175.209.183.195/api/v1/manager/store/6677/order',{
+        return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/order`,{
           headers:{
             Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
           }
