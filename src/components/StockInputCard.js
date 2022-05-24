@@ -36,6 +36,7 @@ const StockInputCard = ({ title, data }) => {
       headers:{
         Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
       }
+      ,rejectUnauthorized: false
     }
     
     let body = [];
@@ -49,7 +50,7 @@ const StockInputCard = ({ title, data }) => {
       })
     });
     console.log(body);
-    axios.post(`http://175.209.183.195:8001/api/v1/manager/stocks`, body, config).then(res=>{
+    axios.post(`https://175.209.183.195/api/v1/manager/stocks`, body, config).then(res=>{
       if(res.status===201){
         alert('등록되었습니다');
         navigate("/")
@@ -118,7 +119,7 @@ const StockInputCard = ({ title, data }) => {
                 <Td>
                   <InputGroup key={row.id}>
                     <Input type="number" id="discountRate" key={row.id} defaultValue={row.discountRate} onChange={(e)=>onChangeDiscountRate(e,row.id)} style={{width:"100px", textAlign:"right"}}/>%
-                    <InputRightElement children='%'/>
+                    <InputRightElement children='%'style={{paddingRight:'15px'}}/>
                   </InputGroup>
                 </Td>
                 <Td>
