@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 // Assets
 import signInImage from "assets/img/signInImage.png";
+import axios from 'axios'
 
 function SignIn() {
   // Chakra color mode
@@ -34,7 +35,13 @@ function SignIn() {
   }
 
   const kakaoLogin = function(){
-    
+    axios.get(`https://175.209.183.195/oauth/oauth2/authorization/kakao/`,{
+        // headers:{"Access-Control-Allow-Origin":"*"},
+        // 'Access-Control-Allow-Credentials':true
+        'Access-Control-Allow-Origin':'*'
+        }).then(response=>{
+          console.log('kakao : ',response)
+        });
   }
 
   return (
