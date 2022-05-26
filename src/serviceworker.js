@@ -30,7 +30,6 @@ navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/firebase-messaging-s
       let isNotificationSupported = 'Notification' in window;
       if(isNotificationSupported){
         Notification.requestPermission().then((permission) => {
-          console.log('requestPermission!!!!!!!!!!')
           if (permission === "granted") {
             console.log("Notification permission granted.");
           } else {
@@ -41,16 +40,21 @@ navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/firebase-messaging-s
 
       messaging.getToken({ vapidKey: PUBLIC_VAPID_KEY }).then((currentToken) => {
         if (currentToken) {
-          // Send the token to your server and update the UI if necessary
-          console.log('firebase token : ',currentToken)
+          let body = { pushId: currentToken};
+          fetch('https://175.209.183.195/api/v1/manager/pushid', {
+            method: 'PATCH',
+            headers: {
+              'Content-Type':'application/json',
+              'Authorization': `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+            },
+            body: JSON.stringify(body)
+          })
+            .then((response) => console.log('send token status',response.status))
         } else {
-          // Show permission request UI
           console.log('No registration token available. Request permission to generate one.');
-          // ...
         }
       }).catch((err) => {
         console.log('An error occurred while retrieving token. ', err);
-        // ...
       });
 
     });
