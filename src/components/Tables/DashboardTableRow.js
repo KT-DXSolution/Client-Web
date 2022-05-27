@@ -31,7 +31,7 @@ function DashboardTableRow(props) {
       </Td>
 
       <Td>
-        <AvatarGroup size="sm">
+        <AvatarGroup size="sm" max={5}>
           {purchasers.map((purchaser) => {
             return (
               <Avatar
