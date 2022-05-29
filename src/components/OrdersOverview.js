@@ -78,7 +78,6 @@ const OrdersOverview = (props) => {
         }
         , rejectUnauthorized: false
       }).then(response=>{
-        console.log(response.data.data)
         return response.data.data;
       });
     }

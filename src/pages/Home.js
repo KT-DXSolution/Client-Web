@@ -2,10 +2,32 @@ import OrdersOverview from "components/OrdersOverview";
 import ObjectList from "components/ObjectList";
 import {
   Flex,
-  Grid
+  Grid,
+  useToast
 } from "@chakra-ui/react";
+import React, {useEffect} from "react";
+
 const Home = (props) => {
   const {notification} = props;
+  const toast = useToast();
+
+  useEffect(()=>{
+    if(notification.title){
+
+      toast({
+        title: notification.title,
+        description: notification.body,
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+        position: 'top-right'
+      })
+    }
+
+    console.log(notification)
+    
+  },[notification]);
+
   return (
       <Flex flexDirection='column' pt={{ md: "10px" }}  style={{alignItems:"center"}}>
         <Grid
