@@ -181,7 +181,7 @@ const ObjectList = ({ title, captions}) => {
                   name={row.name}
                   price={numberWithCommas(row.price)}
                   discountPrice={numberWithCommas(row.price*row.discountRate/100)}
-                  progression={((row.registeredQuantity-row.quantity)/row.registeredQuantity*100)|| 0}
+                  progression={Math.round((row.registeredQuantity-row.quantity)/row.registeredQuantity*100)|| 0}
                   imageUrl={row.imageUrl}
                   // expiredAt={row.expiredAt.replace('T',' ')}
                   expiredAt={row.expiredAt.substr(0,10)}
