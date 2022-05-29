@@ -4,7 +4,8 @@ import {
   Flex,
   Grid
 } from "@chakra-ui/react";
-const Home = () => {
+const Home = (props) => {
+  const {notification} = props;
   return (
       <Flex flexDirection='column' pt={{ md: "10px" }}  style={{alignItems:"center"}}>
         <Grid
@@ -15,11 +16,13 @@ const Home = () => {
           <ObjectList
             title={"우리 가게 재고 현황"}
             captions={["메뉴", "주문 고객", "가격", "판매율", "마감시간"]}
+            notification={notification}
           />  
           
           <OrdersOverview
               title={"실시간 주문 현황"}
               amount={30}
+              notification={notification}
             />
           </Grid>
         </Flex>

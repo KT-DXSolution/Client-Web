@@ -31,6 +31,7 @@ function SignIn() {
      */
     sessionStorage.setItem('ceoSeq', 6677)
     sessionStorage.setItem('ceoId',ceoId)
+    window.location.reload();
   }
 
   const kakaoLogin = function(){

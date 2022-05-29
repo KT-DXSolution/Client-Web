@@ -59,10 +59,10 @@ navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/firebase-messaging-s
 
     });
 
-export const onMessageListener = () => {
-  new Promise((resolve)=>{
-    messaging.onMessage((payload)=>{
+export const onMessageListener = () =>
+  new Promise((resolve) => {
+    messaging.onMessage((payload) => {
       resolve(payload);
-    })
-  })
-}
+  });
+});
+  

@@ -14,7 +14,8 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 
-const OrdersOverview = ({ title, amount}) => {
+const OrdersOverview = (props) => {
+  const { title, amount, notification} = props;
   const textColor = useColorModeValue("gray.700", "white");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -22,83 +23,82 @@ const OrdersOverview = ({ title, amount}) => {
 
   const ceoSeq = sessionStorage.getItem('ceoSeq');
 
-  useEffect(()=>{
+  const fetchItems = async() =>{
+    try {
+      setError(null);
+      setLoading(true);
+      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/item`,{
+        headers:{
+          Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+        },
+        rejectUnauthorized: false
+      }).then(response=>{
+        return response.data.data.itemList;
+      });
+    }
+    catch(e){
+     setError(e); 
+    }
+    finally{
+      // loading 완
+      setLoading(false);
+    }
+  }
+
+  const fetchStocks = async() => {
+    try {
+      setError(null);
+      setLoading(true);
+      
+      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/stock`,{
+        headers:{
+          Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+        }
+        , rejectUnauthorized: false
+      }).then(response=>{
+        return response.data.data;
+      });
+    }
+    catch(e){
+     setError(e); 
+    }
+    finally{
+      setLoading(false);
+    }
+  }
+
+  const fetchOrders = async() => {
+    try {
+      setError(null);
+      setLoading(true);
+      
+      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/order`,{
+        headers:{
+          Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+        }
+        , rejectUnauthorized: false
+      }).then(response=>{
+        console.log(response.data.data)
+        return response.data.data;
+      });
+    }
+    catch(e){
+     setError(e); 
+    }
+    finally{
+      setLoading(false);
+    }
+  }
+
+  const fetchAllData = () =>{
     let items = [];
     let stocks = [];
     let orders = [];
-
-    const fetchItems = async() =>{
-      try {
-        setError(null);
-        setLoading(true);
-        return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/item`,{
-          headers:{
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
-          },
-          rejectUnauthorized: false
-        }).then(response=>{
-          return response.data.data.itemList;
-        });
-      }
-      catch(e){
-       setError(e); 
-      }
-      finally{
-        // loading 완
-        setLoading(false);
-      }
-    }
-
-    const fetchStocks = async() => {
-      try {
-        setError(null);
-        setLoading(true);
-        
-        return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/stock`,{
-          headers:{
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
-          }
-          , rejectUnauthorized: false
-        }).then(response=>{
-          return response.data.data;
-        });
-      }
-      catch(e){
-       setError(e); 
-      }
-      finally{
-        setLoading(false);
-      }
-    }
-
-    const fetchOrders = async() => {
-      try {
-        setError(null);
-        setLoading(true);
-        
-        return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/order`,{
-          headers:{
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
-          }
-          , rejectUnauthorized: false
-        }).then(response=>{
-          console.log(response.data.data)
-          return response.data.data;
-        });
-      }
-      catch(e){
-       setError(e); 
-      }
-      finally{
-        setLoading(false);
-      }
-    }
 
     Promise.all([fetchItems(), fetchStocks(), fetchOrders()]).then(responses=>{
       [items, stocks, orders] = responses;
       let overviewObj = [];
       let name, itemName, quantity, date;
-      let idx = 0;
       let logoObj = [FaBell, FaHtml5, FaShoppingCart, FaCreditCard];
       let colorObj = ['teal.300', 'orange', 'blue.400', 'orange.300'];
       orders.sort((a,b)=>b.id-a.id);
@@ -108,17 +108,20 @@ const OrdersOverview = ({ title, amount}) => {
         quantity = order.quantity;
         date = order.createdAt.substr(5,11).replace('T',' ').replace('-', '/');
         overviewObj.push({
-          logo:logoObj[idx%4],
+          logo:logoObj[order.id%4],
           title: `[주문] ${itemName} ${quantity}개 (${name})`,
           date : date,
-          color:colorObj[idx%4]
+          color:colorObj[order.id%4]
         })
-        idx++;
       })
       console.log('주문현황', overviewObj);
       setData(overviewObj);
     })
-  },[])
+  }
+
+  useEffect(()=>{
+    fetchAllData();
+  },[notification])
 
   return (
     <Card maxH='100%'>

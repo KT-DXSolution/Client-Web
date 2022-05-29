@@ -18,7 +18,8 @@ import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const ObjectList = ({ title, captions}) => {
+const ObjectList = (props) => {
+  const { title, captions, notification} = props;
   const textColor = useColorModeValue("gray.700", "white");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -30,79 +31,80 @@ const ObjectList = ({ title, captions}) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
-  useEffect(()=>{
+  const fetchItems = async() =>{
+    try {
+      // 요청이 시작할 때 error와 items 초기화
+      setError(null);
+
+      // loading 중
+      setLoading(true);
+      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/item`,{
+        headers:{
+          Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+        },
+        rejectUnauthorized: false
+      }).then(response=>{
+        return response.data.data.itemList;
+      });
+    }
+    catch(e){
+     setError(e); 
+    }
+    finally{
+      // loading 완
+      setLoading(false);
+    }
+  }
+
+  const fetchStocks = async() => {
+    try {
+      setError(null);
+      setLoading(true);
+      
+      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/stock`,{
+        headers:{
+          Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+        }
+        , rejectUnauthorized: false
+      }).then(response=>{
+        return response.data.data;
+      });
+    }
+    catch(e){
+     setError(e); 
+    }
+    finally{
+      setLoading(false);
+    }
+  }
+
+  const fetchOrders = async() => {
+    try {
+      setError(null);
+      setLoading(true);
+      
+      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/order`,{
+        headers:{
+          Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+        }
+        , rejectUnauthorized: false
+      }).then(response=>{
+        console.log(response.data.data)
+        return response.data.data;
+      });
+    }
+    catch(e){
+     setError(e); 
+    }
+    finally{
+      setLoading(false);
+    }
+  }
+
+  const fetchAllData = () =>{
     let items = [];
     let stocks = [];
     let orders = [];
-    const fetchItems = async() =>{
-      try {
-        // 요청이 시작할 때 error와 items 초기화
-        setError(null);
-
-        // loading 중
-        setLoading(true);
-        return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/item`,{
-          headers:{
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
-          },
-          rejectUnauthorized: false
-        }).then(response=>{
-          return response.data.data.itemList;
-        });
-      }
-      catch(e){
-       setError(e); 
-      }
-      finally{
-        // loading 완
-        setLoading(false);
-      }
-    }
-
-    const fetchStocks = async() => {
-      try {
-        setError(null);
-        setLoading(true);
-        
-        return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/stock`,{
-          headers:{
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
-          }
-          , rejectUnauthorized: false
-        }).then(response=>{
-          return response.data.data;
-        });
-      }
-      catch(e){
-       setError(e); 
-      }
-      finally{
-        setLoading(false);
-      }
-    }
-
-    const fetchOrders = async() => {
-      try {
-        setError(null);
-        setLoading(true);
-        
-        return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/order`,{
-          headers:{
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
-          }
-          , rejectUnauthorized: false
-        }).then(response=>{
-          console.log(response.data.data)
-          return response.data.data;
-        });
-      }
-      catch(e){
-       setError(e); 
-      }
-      finally{
-        setLoading(false);
-      }
-    }
 
     Promise.all([fetchItems(), fetchStocks(), fetchOrders()]).then(responses=>{
       [items, stocks, orders] = responses;
@@ -116,8 +118,12 @@ const ObjectList = ({ title, captions}) => {
       console.log(stocks);
       setDatas(stocks)
     })
+  }
 
-  },[]);
+  useEffect(()=>{
+    fetchAllData();
+
+  },[notification]);
 
   if(loading) return <div>로딩중</div>
   if(error) return <div>에러발생</div>
