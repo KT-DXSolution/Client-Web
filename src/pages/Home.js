@@ -6,14 +6,19 @@ import {
   useToast
 } from "@chakra-ui/react";
 import React, {useEffect} from "react";
+import audioUrl from "assets/audio/MP_TaDa.mp3";
 
 const Home = (props) => {
   const {notification} = props;
   const toast = useToast();
+  const alertAudio = new Audio(audioUrl);
 
   useEffect(()=>{
-    if(notification.title){
+    alertAudio.muted = false;
 
+    if(notification.title){
+      alertAudio.play();
+      
       toast({
         title: notification.title,
         description: notification.body,
@@ -25,7 +30,7 @@ const Home = (props) => {
     }
 
     console.log(notification)
-    
+
   },[notification]);
 
   return (
