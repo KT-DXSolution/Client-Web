@@ -12,6 +12,14 @@ import {
   Switch,
   Text,
   useColorModeValue,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure
 } from "@chakra-ui/react";
 // Assets
 import signInImage from "assets/img/signInImage.png";
@@ -20,25 +28,29 @@ function SignIn() {
   // Chakra color mode
   const titleColor = useColorModeValue("teal.300", "teal.200");
   const textColor = useColorModeValue("gray.400", "white");
+  const kakaoUrl = `https://175.209.183.195/oauth/oauth2/authorization/kakao`
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const ceoLogin = function(){
-    // localStorage.setItem('ceoId')
-    let ceoId = document.getElementById('ceoId').value;
-    /*
-     login to server
-     return seq
-     sessionStorage set seq 
-     */
-    sessionStorage.setItem('ceoSeq', 6677)
-    sessionStorage.setItem('ceoId',ceoId)
+    let ceoSeq = document.getElementById('ceoId').value;
+    sessionStorage.setItem('ceoSeq', ceoSeq)
     window.location.reload();
   }
 
   const kakaoLogin = function(){
-    window.open(`http://175.209.183.195:8001/oauth/oauth2/authorization/kakao`)
+    // let win = window.open(kakaoUrl);
+    // setTimeout(()=>{console.log(win.location.href)}, 3000)
+
+    onOpen();
+  }
+
+  const winClose = function(){
+    console.log('close')
+    onClose();
   }
 
   return (
+    <>
     <Flex position='relative' mb='40px'>
       <Flex
         h={{ sm: "initial", md: "75vh", lg: "85vh" }}
@@ -175,6 +187,26 @@ function SignIn() {
         </Box>
       </Flex>
     </Flex>
+    <Modal isOpen={isOpen} onClose={winClose} size='xl'>
+    <ModalOverlay />
+    <ModalContent>
+      <ModalCloseButton />
+      <ModalHeader>카카오 로그인</ModalHeader>
+      <ModalBody>
+        <div>
+          <iframe id="ifrm" width={'100%'} height={'500px'} src={kakaoUrl}>
+          </iframe>
+        </div>
+      </ModalBody>
+
+      <ModalFooter>
+        <Button colorScheme='blue' mr={3} onClick={winClose}>
+          Close
+        </Button>
+      </ModalFooter>
+    </ModalContent>
+  </Modal>
+  </>
   );
 }
 
