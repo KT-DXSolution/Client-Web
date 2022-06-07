@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import firebase from "firebase/app";
 import "firebase/messaging";
+import * as envConfig from 'config.js'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -41,7 +42,7 @@ navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/firebase-messaging-s
       messaging.getToken({ vapidKey: PUBLIC_VAPID_KEY }).then((currentToken) => {
         if (currentToken) {
           let body = { pushId: currentToken};
-          fetch('https://175.209.183.195/api/v1/manager/pushid', {
+          fetch(`${envConfig.BASE_URL}/api/v1/manager/pushid`, {
             method: 'PATCH',
             headers: {
               'Content-Type':'application/json',

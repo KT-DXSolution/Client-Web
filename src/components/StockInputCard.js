@@ -25,6 +25,7 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import React, {useState} from "react";
 import { useNavigate  } from "react-router-dom";
+import * as config from 'config.js'
 
 const StockInputCard = ({ title, data }) => {
   const textColor = useColorModeValue("teal.700", "white");
@@ -32,7 +33,7 @@ const StockInputCard = ({ title, data }) => {
   
   function registerStock(){
     
-    let config = {
+    let header = {
       headers:{
         Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
       }
@@ -50,7 +51,7 @@ const StockInputCard = ({ title, data }) => {
       })
     });
     console.log(body);
-    axios.post(`https://175.209.183.195/api/v1/manager/stocks`, body, config).then(res=>{
+    axios.post(`${config.BASE_URL}/api/v1/manager/stocks`, body, header).then(res=>{
       if(res.status===201){
         alert('등록되었습니다');
         navigate("/")

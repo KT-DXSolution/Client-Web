@@ -9,7 +9,6 @@ import {
   Tr,
   useColorModeValue,
   Button,
-  AlertTitle
 } from "@chakra-ui/react";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
@@ -17,6 +16,7 @@ import DashboardTableRow from "components/Tables/DashboardTableRow";
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import * as config from 'config.js';
 
 const ObjectList = (props) => {
   const { title, captions, notification} = props;
@@ -38,7 +38,7 @@ const ObjectList = (props) => {
 
       // loading 중
       setLoading(true);
-      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/item`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/item`,{
         headers:{
           Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
         },
@@ -61,7 +61,7 @@ const ObjectList = (props) => {
       setError(null);
       setLoading(true);
       
-      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/stock`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/stock`,{
         headers:{
           Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
         }
@@ -83,7 +83,7 @@ const ObjectList = (props) => {
       setError(null);
       setLoading(true);
       
-      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/order`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/order`,{
         headers:{
           Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
         }
@@ -186,10 +186,9 @@ const ObjectList = (props) => {
                   key={row.stockId}
                   name={row.name}
                   price={numberWithCommas(row.price)}
-                  discountPrice={numberWithCommas(row.price*row.discountRate/100)}
+                  discountPrice={numberWithCommas(row.price*(100-row.discountRate)/100)}
                   progression={Math.round((row.registeredQuantity-row.quantity)/row.registeredQuantity*100)|| 0}
                   imageUrl={row.imageUrl}
-                  // expiredAt={row.expiredAt.replace('T',' ')}
                   expiredAt={row.expiredAt.substr(0,10)}
                   purchasers={row.purchasers}
                 />

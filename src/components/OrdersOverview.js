@@ -13,6 +13,7 @@ import {
   FaHtml5,
   FaShoppingCart,
 } from "react-icons/fa";
+import * as config from 'config.js';
 
 const OrdersOverview = (props) => {
   const { title, amount, notification} = props;
@@ -27,7 +28,7 @@ const OrdersOverview = (props) => {
     try {
       setError(null);
       setLoading(true);
-      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/item`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/item`,{
         headers:{
           Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
         },
@@ -50,7 +51,7 @@ const OrdersOverview = (props) => {
       setError(null);
       setLoading(true);
       
-      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/stock`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/stock`,{
         headers:{
           Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
         }
@@ -72,7 +73,7 @@ const OrdersOverview = (props) => {
       setError(null);
       setLoading(true);
       
-      return axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/order`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/order`,{
         headers:{
           Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
         }

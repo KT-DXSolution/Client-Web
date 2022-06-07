@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useState, useRef} from "react";
+import NewWindow from 'react-new-window'
 // Chakra imports
 import {
   Box,
@@ -11,25 +12,19 @@ import {
   Link,
   Switch,
   Text,
-  useColorModeValue,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure
+  useColorModeValue
 } from "@chakra-ui/react";
 // Assets
 import signInImage from "assets/img/signInImage.png";
+import * as config from 'config.js'
 
 function SignIn() {
   // Chakra color mode
   const titleColor = useColorModeValue("teal.300", "teal.200");
   const textColor = useColorModeValue("gray.400", "white");
-  const kakaoUrl = `https://175.209.183.195/oauth/oauth2/authorization/kakao`
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const kakaoUrl = `${config.BASE_URL}/oauth/oauth2/authorization/kakao`
+  const [open,setOpen] = useState(false);
+  let kakaoRef = useRef();
 
   const ceoLogin = function(){
     let ceoSeq = document.getElementById('ceoId').value;
@@ -38,15 +33,11 @@ function SignIn() {
   }
 
   const kakaoLogin = function(){
-    // let win = window.open(kakaoUrl);
-    // setTimeout(()=>{console.log(win.location.href)}, 3000)
-
-    onOpen();
+    setOpen(true)
   }
 
-  const winClose = function(){
-    console.log('close')
-    onClose();
+  const winClose = ()=>{
+    setOpen(false);
   }
 
   return (
@@ -187,25 +178,10 @@ function SignIn() {
         </Box>
       </Flex>
     </Flex>
-    <Modal isOpen={isOpen} onClose={winClose} size='xl'>
-    <ModalOverlay />
-    <ModalContent>
-      <ModalCloseButton />
-      <ModalHeader>카카오 로그인</ModalHeader>
-      <ModalBody>
-        <div>
-          <iframe id="ifrm" width={'100%'} height={'500px'} src={kakaoUrl}>
-          </iframe>
-        </div>
-      </ModalBody>
-
-      <ModalFooter>
-        <Button colorScheme='blue' mr={3} onClick={winClose}>
-          Close
-        </Button>
-      </ModalFooter>
-    </ModalContent>
-  </Modal>
+  {open&&<NewWindow onUnload={winClose} id="kakaoWindow" ref={kakaoRef} 
+  onOpen={(newWindow) => {newWindow.location.href=kakaoUrl; newWindow.addEventListener('DOMContentLoaded',console.log(newWindow.location.href))}}>
+    
+  </NewWindow>}
   </>
   );
 }

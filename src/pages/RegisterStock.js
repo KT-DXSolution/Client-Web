@@ -13,6 +13,7 @@ import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 import ItemList from "components/ItemList"
 import Card from "components/Card/Card.js";
 import StockInputCard from "components/StockInputCard"
+import * as config from 'config.js'
 
 const RegisterStock = () => {
   const bgIcons = useColorModeValue("gray.100", "rgba(255, 255, 255, 0.5)");
@@ -32,7 +33,7 @@ const RegisterStock = () => {
 
         // loading 상태를 true로 바꿈
         setLoading(true);
-        axios.get(`https://175.209.183.195/api/v1/manager/store/${ceoSeq}/item`,{
+        axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/item`,{
           headers:{
             Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
           }
@@ -58,14 +59,14 @@ const RegisterStock = () => {
   if(!items) return null;
 
   function addToStock(){
-
+    let nextMonth = new Date().getMonth()+2;
     let moveItem = Array.from(stocks.current);
     console.log('moveItem :',moveItem)
     setStockArray(items.filter(o => {
       return moveItem.includes(o.id)
     }).map(res=>{
       res.discountRate=10
-      res.expiredAt='2022-05-31'
+      res.expiredAt=`2022-0${nextMonth}-01`
       res.quantity=1
       return res;
     }))
