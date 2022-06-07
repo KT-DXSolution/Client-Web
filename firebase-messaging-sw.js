@@ -12,13 +12,15 @@ const config =  {
 firebase.initializeApp(config);
 
 const messaging = firebase.messaging();
+console.log('Do messaging sw')
 
 messaging.onBackgroundMessage(function(payload){
     console.log("Received background message ", payload);
     const notificationTitle = payload.notification.title;
     const notificationOptions = {
         body: payload.notification.body,
-        icon: "/logo192.png"
+        icon: "./logo192.png",
+        "sound": "default"
     };
 
     return self.registration.showNotification(
