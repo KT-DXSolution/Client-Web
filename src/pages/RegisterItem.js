@@ -1,6 +1,5 @@
 
 import React from 'react';
-import styled from 'styled-components';
 import { 
   Flex, 
   Text, 
@@ -8,16 +7,14 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Switch,
-  Link,
   Button,
   InputRightAddon,
   InputGroup,
-  Box,
-  Image,
-  Icon
+  Icon,
+  Grid
  } from "@chakra-ui/react";
 import { MdAddPhotoAlternate } from "react-icons/md";
+import Card from "components/Card/Card.js";
 
 const RegisterItem = () => {
   const textColor = useColorModeValue("gray.700", "white");
@@ -26,14 +23,18 @@ const RegisterItem = () => {
   const bgIcons = useColorModeValue("gray.100", "rgba(255, 255, 255, 0.5)");
 
   return (
-    <Flex alignItems='center' justifyContent='center' mb='60px' mt='20px'>
+    <Flex flexDirection='column' pt={{ md: "10px" }}  style={{alignItems:"center"}}>
+      <Grid
+          templateColumns={{ sm: "1fr", md: "1fr ", lg: "1fr" }}
+          templateRows={{ sm: "1fr auto", md: "1fr", lg: "1fr" }}
+          gap='24px'
+          style={{width:"85vw"}}>
+      <Card p='36px' overflowX={{ sm: "scroll", xl: "hidden" }}>
       <Flex
         direction='column'
-        w='545px'
         background='transparent'
         borderRadius='15px'
         p='40px'
-        mx={{ base: "100px" }}
         bg={bgColor}
         boxShadow='0 20px 27px 0 rgb(0 0 0 / 5%)'>
         
@@ -146,6 +147,8 @@ const RegisterItem = () => {
           mt='0px'>
         </Flex>
       </Flex>
+      </Card>
+      </Grid>
       </Flex>
   )
 }

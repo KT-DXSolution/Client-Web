@@ -19,7 +19,7 @@ import axios from 'axios';
 import * as config from 'config.js';
 
 const ObjectList = (props) => {
-  const { title, captions, notification} = props;
+  const { title, captions, notification, option} = props;
   const textColor = useColorModeValue("gray.700", "white");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -155,14 +155,14 @@ const ObjectList = (props) => {
           </Text>
           </Flex>
           <Link to="/registerStock">
-            <Button
+            {option&&<Button
               colorScheme='teal'
               variant='solid'
               fontSize='s'
               p='8px 32px'
               style={{cursor:"pointer"}}>
               등록
-            </Button>
+            </Button>}
           </Link>
         </Flex>
       </CardHeader>

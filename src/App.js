@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import RouterTestPage from './pages/RouterTestPage';
 import RegisterItem from './pages/RegisterItem';
 import RegisterStock from './pages/RegisterStock';
+import Token from './pages/Token';
 import Navbar from 'components/Navbar/Navbar';
 import { ChakraProvider} from "@chakra-ui/react";
 import SignIn from 'pages/SignIn';
@@ -39,7 +40,7 @@ function App(){
       <Navbar/>
       <Routes>
           <Route path="/" element={<Home notification={notification}/>} />
-          <Route path="/RouterTestPage" element={<RouterTestPage />} />
+          <Route path="/page2" element={<RouterTestPage />} />
           <Route path="/registerItem" element={<RegisterItem />} />
           <Route path="/registerStock" element={<RegisterStock />} />
       </Routes>
@@ -47,6 +48,7 @@ function App(){
       :
       <Routes>
         <Route path="/" element={<SignIn />} />
+        <Route path="/token" element={<Token />} />
       </Routes>
       }
       </ChakraProvider>
