@@ -3,6 +3,8 @@
 ![version](https://img.shields.io/badge/version-1.0.0-blue.svg) ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 CEO website was made with React.
+![](https://user-images.githubusercontent.com/45033386/172790672-e603b631-cc97-4325-8199-7d9d4427bb0b.png)
+![](https://user-images.githubusercontent.com/45033386/172791246-4cba148c-7b46-422a-afa4-50cf79a419b6.png)
 
 ## Available Scripts
 
@@ -24,12 +26,6 @@ Launches the test runner in the interactive watch mode.
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Browser Support
-
-At present, we officially aim to support the last two versions of the following browsers:
-
-<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/chrome-logo.png?raw=true" width="64" height="64"> <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/firefox-logo.png" width="64" height="64"> <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/edge-logo.png" width="64" height="64"> <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/safari-logo.png" width="64" height="64"> <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/opera-logo.png" width="64" height="64">
 
 ## UI Licensing
 
