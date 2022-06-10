@@ -47,7 +47,7 @@ function App(){
       </>
       :
       <Routes>
-        <Route path="/" element={<SignIn />} />
+        <Route exact path="/" element={<SignIn />} />
         <Route path="/token" element={<Token />} />
       </Routes>
       }
