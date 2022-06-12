@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import RouterTestPage from './pages/RouterTestPage';
+import Orders from './pages/Orders';
 import RegisterItem from './pages/RegisterItem';
 import RegisterStock from './pages/RegisterStock';
 import Token from './pages/Token';
@@ -40,7 +40,7 @@ function App(){
       <Navbar/>
       <Routes>
           <Route path="/" element={<Home notification={notification}/>} />
-          <Route path="/page2" element={<RouterTestPage />} />
+          <Route path="/Orders" element={<Orders />} />
           <Route path="/registerItem" element={<RegisterItem />} />
           <Route path="/registerStock" element={<RegisterStock />} />
       </Routes>

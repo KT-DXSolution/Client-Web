@@ -1,13 +1,12 @@
 
 import React from 'react';
-import styled from 'styled-components';
 import ObjectList from "components/ObjectList";
 import {
   Flex,
   Grid
 } from "@chakra-ui/react";
 
-const RouterTestPage = () => {
+const Orders = () => {
   return (
     <Flex flexDirection='column' pt={{ md: "10px" }}  style={{alignItems:"center"}}>
       <Grid
@@ -25,4 +24,4 @@ const RouterTestPage = () => {
   );
 }
 
-export default RouterTestPage;
+export default Orders;
