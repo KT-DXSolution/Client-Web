@@ -22,7 +22,7 @@ const OrdersOverview = (props) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
 
-  const ceoSeq = sessionStorage.getItem('ceoSeq');
+  const ceoSeq = localStorage.getItem('ceoSeq');
 
   const fetchItems = async() =>{
     try {

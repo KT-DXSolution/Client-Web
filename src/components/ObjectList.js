@@ -25,7 +25,7 @@ const ObjectList = (props) => {
   const [error, setError] = useState(null);
   const [datas, setDatas] = useState([]);//dashboardTableData
 
-  const ceoSeq = sessionStorage.getItem('ceoSeq');
+  const ceoSeq = localStorage.getItem('ceoSeq');
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');

@@ -17,7 +17,7 @@ function App(){
   const [notification, setNotification] = useState({ title: "", body: "" });
 
   const isLogin = () =>{
-    if(sessionStorage.getItem('ceoSeq')) return true
+    if(localStorage.getItem('ceoSeq')) return true
     return false;
   }
 

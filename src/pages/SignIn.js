@@ -28,7 +28,7 @@ function SignIn() {
 
   const ceoLogin = function(){
     let ceoSeq = document.getElementById('ceoId').value;
-    sessionStorage.setItem('ceoSeq', ceoSeq)
+    localStorage.setItem('ceoSeq', ceoSeq);
     window.location.reload();
   }
 
@@ -38,6 +38,7 @@ function SignIn() {
 
   const winClose = ()=>{
     setOpen(false);
+    window.location.reload();
   }
 
   return (

@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import { 
   Flex, 
@@ -22,7 +21,7 @@ const RegisterStock = () => {
   const [items, setItems] = useState(null);
   const [stockArray, setStockArray] = useState([]);
   const stocks = useRef(new Set())
-  const ceoSeq = sessionStorage.getItem('ceoSeq');
+  const ceoSeq = localStorage.getItem('ceoSeq');
 
   useEffect(()=>{
     const fetchItems = async() =>{
