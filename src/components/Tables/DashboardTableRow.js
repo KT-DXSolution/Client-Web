@@ -37,7 +37,7 @@ function DashboardTableRow(props) {
               <Avatar
                 name={purchaser.purchaser.name}
                 key={purchaser.id}
-                src={purchaser.purchaser.picture}
+                src={purchaser.purchaser.thumbnail}
                 _hover={{ zIndex: "3", cursor: "pointer" }}
               />
             );
