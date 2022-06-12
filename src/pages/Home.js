@@ -5,18 +5,31 @@ import {
   Grid,
   useToast
 } from "@chakra-ui/react";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import audioUrl from "assets/audio/MP_TaDa.mp3";
+import { onMessageListener } from 'serviceworker.js'
 
-const Home = (props) => {
-  const {notification} = props;
+const Home = () => {
   const toast = useToast();
   const alertAudio = new Audio(audioUrl);
+  const [show, setShow] = useState(false);
+  const [notification, setNotification] = useState({ title: "", body: "" });
+
+  onMessageListener()
+  .then((payload) => {
+    setShow(true);
+    setNotification({
+      title: payload.notification.title,
+      body: payload.notification.body,
+    });
+    console.log('receive at App.js : ', payload);
+  })
+  .catch((err) => console.log("failed: ", err));
 
   useEffect(()=>{
     alertAudio.muted = false;
 
-    if(notification.title){
+    if(notification && notification.title){
       alertAudio.play();
       
       toast({
