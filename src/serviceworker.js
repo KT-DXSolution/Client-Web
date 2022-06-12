@@ -46,7 +46,7 @@ navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/firebase-messaging-s
             method: 'PATCH',
             headers: {
               'Content-Type':'application/json',
-              'Authorization': `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+              'Authorization': `Bearer ${localStorage.getItem('apiToken')||envConfig.DEFAULT_TOKEN}`
             },
             body: JSON.stringify(body)
           })

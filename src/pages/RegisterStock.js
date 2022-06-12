@@ -34,7 +34,7 @@ const RegisterStock = () => {
         setLoading(true);
         axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/item`,{
           headers:{
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+            Authorization: `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
           }
           , rejectUnauthorized: false
         }).then(response=>{

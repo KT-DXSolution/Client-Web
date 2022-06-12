@@ -23,7 +23,7 @@ import {
 import axios from "axios";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
-import React, {useState} from "react";
+import React from "react";
 import { useNavigate  } from "react-router-dom";
 import * as config from 'config.js'
 
@@ -35,7 +35,7 @@ const StockInputCard = ({ title, data }) => {
     
     let header = {
       headers:{
-        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0a2RnanMxNTAxQG5hdGUuY29tIiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsImlhdCI6MTY0OTgzODMzNSwiZXhwIjoxNjU4NDc4MzM1fQ.y4KkHs11pnVaqnHA0u4fUZk9yAYf1l2UIndVPvoNoUZeaWeyK26GxpLzafThV94XCwbZvA76-0yuHogbDAn4cA`
+        Authorization: `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
       }
       ,rejectUnauthorized: false
     }
