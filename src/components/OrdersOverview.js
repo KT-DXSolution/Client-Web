@@ -104,7 +104,7 @@ const OrdersOverview = (props) => {
       orders.sort((a,b)=>b.id-a.id);
       orders.map(order=>{
         name = order.purchaser.name;
-        itemName = items.find(it=> it.id=stocks.find(el=>el.stockId=order.stockId).itemId).name;
+        itemName = items.find(it=> it.id==stocks.find(el=>el.stockId==order.stockId).itemId).name;
         quantity = order.quantity;
         date = order.createdAt.substr(5,11).replace('T',' ').replace('-', '/');
         overviewObj.push({
