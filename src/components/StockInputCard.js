@@ -54,8 +54,7 @@ const StockInputCard = ({ title, data }) => {
     axios.post(`${config.BASE_URL}/api/v1/manager/stocks`, body, header).then(res=>{
       if(res.status===201){
         alert('등록되었습니다');
-        // navigate("/")
-        window.location.href('/')
+        navigate("/")
       }
     })
   }
