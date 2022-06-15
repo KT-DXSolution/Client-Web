@@ -19,6 +19,12 @@ function Navbar() {
         }
     };
 
+    const logoutClick = () =>{
+        window.localStorage.removeItem('ceoSeq');
+        window.localStorage.removeItem('apiToken');
+        window.location.reload();
+    }
+
     useEffect(() => {
         showButton();
     }, []);
@@ -43,13 +49,18 @@ function Navbar() {
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/Orders' className='nav-links' onClick = {closeMobileMenu}>
+                        <Link to='/orders' className='nav-links' onClick = {closeMobileMenu}>
                             Orders
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/RegisterItem' className='nav-links' onClick = {closeMobileMenu}>
+                        <Link to='/registerItem' className='nav-links' onClick = {closeMobileMenu}>
                             Register
+                        </Link>
+                    </li>
+                    <li className='nav-item'>
+                        <Link to='/' className='nav-links' onClick = {logoutClick}>
+                            Logout
                         </Link>
                     </li>
                 </ul>
