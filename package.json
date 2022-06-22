@@ -51,5 +51,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://KT-DXSolution.github.io/Client-Web/"
+  "homepage": "https://KT-DXSolution.github.io/Client-Web/",
+  "devDependencies": {
+    "cra-bundle-analyzer": "^0.1.1"
+  }
 }

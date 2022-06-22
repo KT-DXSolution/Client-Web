@@ -1,14 +1,15 @@
-import React from "react";
+import React,{ Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Orders from './pages/Orders';
-import RegisterItem from './pages/RegisterItem';
-import RegisterStock from './pages/RegisterStock';
 import Token from './pages/Token';
 import Navbar from 'components/Navbar/Navbar';
 import { ChakraProvider} from "@chakra-ui/react";
 import SignIn from 'pages/SignIn';
 import theme from "theme/theme.js";
+
+const LazyHome = lazy(()=>import('./pages/Home'))
+const LazyOrders = lazy(()=>import('./pages/Orders'))
+const LazyRegisterItem = lazy(()=>import('./pages/RegisterItem'))
+const LazyRegisterStock = lazy(()=>import('./pages/RegisterStock'))
 
 function App(){
 
@@ -23,12 +24,14 @@ function App(){
       {isLogin()?
       <>
       <Navbar/>
+      <Suspense fallback={null}>
       <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/registerItem" element={<RegisterItem />} />
-          <Route path="/registerStock" element={<RegisterStock />} />
+          <Route path="/" element={<LazyHome />} />
+          <Route path="/orders" element={<LazyOrders />} />
+          <Route path="/registerItem" element={<LazyRegisterItem />} />
+          <Route path="/registerStock" element={<LazyRegisterStock />} />
       </Routes>
+      </Suspense>
       </>
       :
       <Routes>
