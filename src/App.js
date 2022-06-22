@@ -26,7 +26,7 @@ function App(){
       <Navbar/>
       <Suspense fallback={null}>
       <Routes>
-          <Route path="/" element={<LazyHome />} />
+          <Route exact path="/" element={<LazyHome />} />
           <Route path="/orders" element={<LazyOrders />} />
           <Route path="/registerItem" element={<LazyRegisterItem />} />
           <Route path="/registerStock" element={<LazyRegisterStock />} />

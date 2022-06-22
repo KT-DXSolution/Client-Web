@@ -22,7 +22,7 @@ function Navbar() {
     const logoutClick = () =>{
         window.localStorage.removeItem('ceoSeq');
         window.localStorage.removeItem('apiToken');
-        window.location.reload();
+        window.location.href=process.env.PUBLIC_URL
     }
 
     useEffect(() => {
