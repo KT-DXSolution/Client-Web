@@ -66,4 +66,17 @@ export const onMessageListener = () =>
       resolve(payload);
   });
 });
-  
+ 
+/*
+export const getFCMToken = () => 
+new Promise((resolve)=>{
+  navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/firebase-messaging-sw.js`)
+  .then((registration) => {
+    messaging.useServiceWorker(registration);
+    messaging.getToken({ vapidKey: PUBLIC_VAPID_KEY }).then((currentToken)=>{
+      console.log(currentToken)
+      resolve(currentToken)
+    })
+  })
+});
+*/

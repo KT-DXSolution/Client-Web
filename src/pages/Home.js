@@ -46,6 +46,12 @@ const Home = () => {
 
   },[notification]);
 
+  useEffect(async()=>{
+    // getFCMToken().then((token)=>{
+    //   console.log(token)
+    // })
+  },[])
+
   return (
       <Flex flexDirection='column' pt={{ md: "10px" }}  style={{alignItems:"center"}}>
         <Grid
