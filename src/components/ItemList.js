@@ -37,13 +37,7 @@ const ItemList = ({ title, data, onClick }) => {
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((row) => {
-              return (
-                <>
-                  <Item key={row.id} data={row} onClick={onClick}/>
-                </>
-              );
-            })}
+            {data.map((row) => <Item key={row.id} data={row} onClick={onClick}/>)}
           </Tbody>
         </Table>
       </Card>

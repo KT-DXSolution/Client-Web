@@ -7,12 +7,14 @@ import {
 } from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
 import audioUrl from "assets/audio/MP_TaDa.mp3";
-import { onMessageListener } from 'serviceworker.js'
+import { onMessageListener, getFCMToken } from 'serviceworker.js'
+import * as config from 'config.js';
 
 const Home = () => {
   const toast = useToast();
   const alertAudio = new Audio(audioUrl);
   const [show, setShow] = useState(false);
+  const [token, setToken] = useState(false);
   const [notification, setNotification] = useState({ title: "", body: "" });
 
   onMessageListener()
@@ -47,9 +49,25 @@ const Home = () => {
   },[notification]);
 
   useEffect(async()=>{
-    // getFCMToken().then((token)=>{
-    //   console.log(token)
-    // })
+    if(!token){
+
+      getFCMToken().then((token)=>{
+        console.log('token:',token);
+        let body = { pushId: token};
+        fetch(`${config.BASE_URL}/api/v1/manager/pushid`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type':'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
+          },
+          body: JSON.stringify(body)
+        })
+          .then((response) => {
+            console.log('send token status',response.status);
+            setToken(true);
+          })
+      })
+    }
   },[])
 
   return (
