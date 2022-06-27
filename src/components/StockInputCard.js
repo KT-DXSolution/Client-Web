@@ -66,6 +66,10 @@ const StockInputCard = ({ title, data }) => {
   const onChangeQuanty = (e,idx) => {
     data.find(d=>d.id==idx).quantity = e;
   }
+  
+  const onChangeDate = (e,idx) => {
+    data.find(d=>d.id==idx).expiredAt = e.target.value;
+  }
 
   return (
     <Card p='0px' height='900px' alignItems='center'>
@@ -133,7 +137,7 @@ const StockInputCard = ({ title, data }) => {
                 </NumberInput>
                 </Td>
                 <Td>
-                  <Input type="date" defaultValue={row.expiredAt}/>
+                  <Input type="date" defaultValue={row.expiredAt} onChange={(e)=>onChangeDate(e,row.id)}/>
                 </Td>
               </Tr>
             );
