@@ -31,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "gh-pages -d build",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "server": "npx json-server --watch server/data.json --port=3001"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +54,7 @@
   },
   "homepage": "https://KT-DXSolution.github.io/Client-Web/",
   "devDependencies": {
-    "cra-bundle-analyzer": "^0.1.1"
+    "cra-bundle-analyzer": "^0.1.1",
+    "json-server": "^0.17.0"
   }
 }
