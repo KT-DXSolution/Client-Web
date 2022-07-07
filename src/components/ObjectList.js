@@ -17,6 +17,7 @@ import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import * as config from 'config.js';
+import { connect } from 'react-redux'
 
 const ObjectList = (props) => {
   const { title, captions, notification, option} = props;
@@ -122,7 +123,7 @@ const ObjectList = (props) => {
 
   useEffect(()=>{
     fetchAllData();
-
+    console.log('props',props);
   },[notification]);
 
   if(loading) return <div>로딩중</div>
@@ -201,4 +202,12 @@ const ObjectList = (props) => {
   );
 };
 
-export default ObjectList;
+const mapStateToProps = (state) => {
+  return {
+    apiToken: state.auth.apiToken
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(ObjectList);
