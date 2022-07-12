@@ -17,15 +17,25 @@ import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import * as config from 'config.js';
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../store/modules/auth'
 
 const ObjectList = (props) => {
-  const { title, captions, notification, option} = props;
+  const { title, captions, notification, option } = props;
   const textColor = useColorModeValue("gray.700", "white");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [datas, setDatas] = useState([]);//dashboardTableData
 
+  // Redux
+  const getAPIToken = useSelector(state=>state.auth);
+  console.log(getAPIToken)
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(login('updateToken'))
+  }, [])
+  
   const ceoSeq = localStorage.getItem('ceoSeq');
 
   function numberWithCommas(x) {
@@ -123,7 +133,6 @@ const ObjectList = (props) => {
 
   useEffect(()=>{
     fetchAllData();
-    console.log('props',props);
   },[notification]);
 
   if(loading) return <div>로딩중</div>
@@ -202,12 +211,4 @@ const ObjectList = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    apiToken: state.auth.apiToken
-  }
-}
-
-export default connect(
-  mapStateToProps
-)(ObjectList);
+export default ObjectList;

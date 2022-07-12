@@ -3,8 +3,9 @@ export const LOGIN = "auth/LOGIN";
 
 // actions
 export const login = apiToken => ({
+  // setToken
   type: LOGIN,
-  payload: apiToken
+  apiToken: apiToken
 });
 
 // reducer
@@ -16,7 +17,7 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
       return {
-        apiToken: state.apiToken
+        apiToken: action.apiToken
       };
     default:
       return state;
