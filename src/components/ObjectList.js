@@ -17,8 +17,6 @@ import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import * as config from 'config.js';
-import { useSelector, useDispatch } from 'react-redux'
-import { login } from '../store/modules/auth'
 
 const ObjectList = (props) => {
   const { title, captions, notification, option } = props;
@@ -27,15 +25,6 @@ const ObjectList = (props) => {
   const [error, setError] = useState(null);
   const [datas, setDatas] = useState([]);//dashboardTableData
 
-  // Redux
-  const getAPIToken = useSelector(state=>state.auth);
-  console.log(getAPIToken)
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(login('updateToken'))
-  }, [])
-  
   const ceoSeq = localStorage.getItem('ceoSeq');
 
   function numberWithCommas(x) {

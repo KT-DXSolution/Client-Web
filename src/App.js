@@ -17,7 +17,7 @@ function App(){
   const tokenInRedux = useSelector(state=>state.auth);
 
   const isLogin = () =>{
-    console.log('Get token in redux : ',tokenInRedux)
+    console.log('Get Redux Token : ',tokenInRedux.apiToken)
     if(localStorage.getItem('ceoSeq')) return true
     return false;
   }

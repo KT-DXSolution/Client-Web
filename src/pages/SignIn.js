@@ -17,6 +17,8 @@ import {
 // Assets
 import signInImage from "assets/img/signInImage.png";
 import * as config from 'config.js'
+import { useSelector, useDispatch  } from "react-redux";
+import { login } from '../store/modules/auth'
 
 function SignIn() {
   // Chakra color mode
@@ -25,6 +27,7 @@ function SignIn() {
   const kakaoUrl = `${config.BASE_URL}/oauth/oauth2/authorization/kakao`
   const [open,setOpen] = useState(false);
   let kakaoRef = useRef();
+  const dispatch = useDispatch();
 
   const ceoLogin = function(){
     let ceoSeq = document.getElementById('ceoId').value;
@@ -38,7 +41,13 @@ function SignIn() {
 
   const winClose = ()=>{
     setOpen(false);
-    window.location.reload();
+
+    // Kakao Token
+    const apiToken = localStorage.getItem('apiToken');
+    if(apiToken){
+      dispatch(login(apiToken));
+      window.location.reload();
+    }
   }
 
   return (
