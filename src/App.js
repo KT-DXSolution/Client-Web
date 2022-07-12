@@ -5,6 +5,7 @@ import Navbar from 'components/Navbar/Navbar';
 import { ChakraProvider} from "@chakra-ui/react";
 import SignIn from 'pages/SignIn';
 import theme from "theme/theme.js";
+import { useSelector } from "react-redux";
 
 const LazyHome = lazy(()=>import('./pages/Home'))
 const LazyOrders = lazy(()=>import('./pages/Orders'))
@@ -12,8 +13,11 @@ const LazyRegisterItem = lazy(()=>import('./pages/RegisterItem'))
 const LazyRegisterStock = lazy(()=>import('./pages/RegisterStock'))
 
 function App(){
+  
+  const tokenInRedux = useSelector(state=>state.auth);
 
   const isLogin = () =>{
+    console.log('Get token in redux : ',tokenInRedux)
     if(localStorage.getItem('ceoSeq')) return true
     return false;
   }
