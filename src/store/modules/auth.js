@@ -14,10 +14,11 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
+  console.log('auth.reducer : ', state, action)
   switch (action.type) {
     case LOGIN:
-      console.log('Redux Action : ',action)
       return {
+        ...state,
         apiToken: action.apiToken
       };
     default:

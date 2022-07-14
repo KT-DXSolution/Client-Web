@@ -46,7 +46,7 @@ function SignIn() {
     const apiToken = localStorage.getItem('apiToken');
     if(apiToken){
       dispatch(login(apiToken));
-      window.location.reload();
+      window.location.href = `${process.env.PUBLIC_URL}/`
     }
   }
 
