@@ -33,7 +33,6 @@ function SignIn() {
   const ceoLogin = function(){
     let ceoSeq = document.getElementById('ceoId').value;
     if(ceoSeq==='6677'){
-      localStorage.setItem('ceoSeq', ceoSeq);
       window.location.href = `${process.env.PUBLIC_URL}/`
       dispatch(login(DEFAULT_TOKEN, ceoSeq));
     }

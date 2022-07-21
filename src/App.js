@@ -1,11 +1,13 @@
 import React,{ Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Token from './pages/Token';
-import Navbar from 'components/Navbar/Navbar';
-import { ChakraProvider} from "@chakra-ui/react";
-import SignIn from 'pages/SignIn';
-import theme from "theme/theme.js";
 import { useSelector } from "react-redux";
+
+import { ChakraProvider} from "@chakra-ui/react";
+import theme from "theme/theme.js";
+
+import Token from 'pages/Token';
+import SignIn from 'pages/SignIn';
+import Navbar from 'components/Navbar/Navbar';
 
 const LazyHome = lazy(()=>import('./pages/Home'))
 const LazyOrders = lazy(()=>import('./pages/Orders'))
@@ -18,7 +20,7 @@ function App(){
 
   const isLogin = () =>{
     console.log('Get Redux : ',reduxAuth.ceoSeq, reduxAuth.apiToken)
-    if(localStorage.getItem('ceoSeq')) return true
+    if(reduxAuth.apiToken) return true
     return false;
   }
 

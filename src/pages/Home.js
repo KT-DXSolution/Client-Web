@@ -1,3 +1,6 @@
+import React, {useEffect, useState} from "react";
+import { useSelector } from "react-redux";
+
 import OrdersOverview from "components/OrdersOverview";
 import ObjectList from "components/ObjectList";
 import {
@@ -5,7 +8,7 @@ import {
   Grid,
   useToast
 } from "@chakra-ui/react";
-import React, {useEffect, useState} from "react";
+
 import audioUrl from "assets/audio/MP_TaDa.mp3";
 import { onMessageListener, getFCMToken } from 'serviceworker.js'
 import * as config from 'config.js';
@@ -16,6 +19,7 @@ const Home = () => {
   const [show, setShow] = useState(false);
   const [token, setToken] = useState(false);
   const [notification, setNotification] = useState({ title: "", body: "" });
+  const reduxAuth = useSelector(state=>state.auth);
 
   onMessageListener()
   .then((payload) => {
@@ -58,7 +62,7 @@ const Home = () => {
           method: 'PATCH',
           headers: {
             'Content-Type':'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
+            'Authorization': `Bearer ${reduxAuth.apiToken}`
           },
           body: JSON.stringify(body)
         })

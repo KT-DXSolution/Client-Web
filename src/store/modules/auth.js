@@ -1,5 +1,6 @@
 // actionTypes
 export const LOGIN = "auth/LOGIN";
+export const LOGOUT = "auth/LOGOUT";
 
 // actions
 export const login = (apiToken, ceoSeq) => ({
@@ -7,6 +8,9 @@ export const login = (apiToken, ceoSeq) => ({
   type: LOGIN,
   apiToken: apiToken,
   ceoSeq: ceoSeq
+});
+export const logout = () =>({
+  type: LOGOUT
 });
 
 // reducer
@@ -16,7 +20,6 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  console.log('auth.reducer : ', state, action)
   switch (action.type) {
     case LOGIN:
       return {
@@ -24,6 +27,8 @@ export default function reducer(state = initialState, action) {
         apiToken: action.apiToken,
         ceoSeq: action.ceoSeq
       };
+    case LOGOUT:
+      return {}
     default:
       return state;
   }

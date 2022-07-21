@@ -1,5 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from 'store/modules/auth';
 
 import './Navbar.css';
 
@@ -9,6 +11,8 @@ function Navbar() {
 
     const handleClick = () => setClick(!click) ;
     const closeMobileMenu = () => setClick(false);
+
+    const dispatch = useDispatch();
 
     const showButton = () => {
         if(window.innerWidth <= 800){
@@ -20,8 +24,7 @@ function Navbar() {
     };
 
     const logoutClick = () =>{
-        window.localStorage.removeItem('ceoSeq');
-        window.localStorage.removeItem('apiToken');
+        dispatch(logout());
         window.location.href=process.env.PUBLIC_URL
     }
 

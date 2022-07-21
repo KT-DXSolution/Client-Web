@@ -8,7 +8,6 @@ const Token = () => {
         let token = queryData.token;
 
         if(token){
-            localStorage.setItem('ceoSeq',26122); // TODO : Mapping Token-Manager seq 
             localStorage.setItem('apiToken',token)
             window.close();
         }
