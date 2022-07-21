@@ -25,17 +25,20 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import React from "react";
 import { useNavigate  } from "react-router-dom";
+import { useSelector } from "react-redux";
 import * as config from 'config.js'
 
 const StockInputCard = ({ title, data }) => {
   const textColor = useColorModeValue("teal.700", "white");
   const navigate = useNavigate();
+
+  const reduxAuth = useSelector(state=>state.auth);
   
   function registerStock(){
     
     let header = {
       headers:{
-        Authorization: `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
+        Authorization: `Bearer ${reduxAuth.apiToken}`
       }
       ,rejectUnauthorized: false
     }

@@ -25,7 +25,7 @@ function Navbar() {
 
     const logoutClick = () =>{
         dispatch(logout());
-        window.location.href=process.env.PUBLIC_URL
+        window.location.href = `${process.env.PUBLIC_URL}/`
     }
 
     useEffect(() => {

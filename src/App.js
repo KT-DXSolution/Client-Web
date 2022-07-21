@@ -20,7 +20,7 @@ function App(){
 
   const isLogin = () =>{
     console.log('Get Redux : ',reduxAuth.ceoSeq, reduxAuth.apiToken)
-    if(reduxAuth.apiToken) return true
+    if(reduxAuth.apiToken!=='init') return true
     return false;
   }
 

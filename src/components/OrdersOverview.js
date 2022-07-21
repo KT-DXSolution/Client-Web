@@ -6,6 +6,7 @@ import CardBody from "components/Card/CardBody";
 import CardHeader from "components/Card/CardHeader";
 import TimelineRow from "components/Tables/TimelineRow";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import axios from 'axios';
 import {
   FaBell,
@@ -22,15 +23,15 @@ const OrdersOverview = (props) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
 
-  const ceoSeq = localStorage.getItem('ceoSeq');
+  const reduxAuth = useSelector(state=>state.auth);
 
   const fetchItems = async() =>{
     try {
       setError(null);
       setLoading(true);
-      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/item`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${reduxAuth.ceoSeq}/item`,{
         headers:{
-          Authorization: `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
+          Authorization: `Bearer ${reduxAuth.apiToken}`
         },
         rejectUnauthorized: false
       }).then(response=>{
@@ -51,9 +52,9 @@ const OrdersOverview = (props) => {
       setError(null);
       setLoading(true);
       
-      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/stock`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${reduxAuth.ceoSeq}/stock`,{
         headers:{
-          Authorization: `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
+          Authorization: `Bearer ${reduxAuth.apiToken}`
         }
         , rejectUnauthorized: false
       }).then(response=>{
@@ -73,9 +74,9 @@ const OrdersOverview = (props) => {
       setError(null);
       setLoading(true);
       
-      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/order`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${reduxAuth.ceoSeq}/order`,{
         headers:{
-          Authorization: `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
+          Authorization: `Bearer ${reduxAuth.apiToken}`
         }
         , rejectUnauthorized: false
       }).then(response=>{

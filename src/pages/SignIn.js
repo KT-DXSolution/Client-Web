@@ -30,10 +30,12 @@ function SignIn() {
   let kakaoRef = useRef();
   const dispatch = useDispatch();
 
+  const moveHome = () => (window.location.href = `${process.env.PUBLIC_URL}/`);
+
   const ceoLogin = function(){
     let ceoSeq = document.getElementById('ceoId').value;
     if(ceoSeq==='6677'){
-      window.location.href = `${process.env.PUBLIC_URL}/`
+      moveHome();
       dispatch(login(DEFAULT_TOKEN, ceoSeq));
     }
     else {
@@ -52,7 +54,7 @@ function SignIn() {
     const apiToken = localStorage.getItem('apiToken');
     if(apiToken){
       dispatch(login(apiToken, 26122));
-      window.location.href = `${process.env.PUBLIC_URL}/`
+      moveHome();
       localStorage.removeItem('apiToken');
     }
   }

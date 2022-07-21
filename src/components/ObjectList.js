@@ -15,6 +15,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import DashboardTableRow from "components/Tables/DashboardTableRow";
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
 import axios from 'axios';
 import * as config from 'config.js';
 
@@ -25,7 +26,7 @@ const ObjectList = (props) => {
   const [error, setError] = useState(null);
   const [datas, setDatas] = useState([]);//dashboardTableData
 
-  const ceoSeq = localStorage.getItem('ceoSeq');
+  const reduxAuth = useSelector(state=>state.auth);
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -38,9 +39,9 @@ const ObjectList = (props) => {
 
       // loading 중
       setLoading(true);
-      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/item`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${reduxAuth.ceoSeq}/item`,{
         headers:{
-          Authorization: `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
+          Authorization: `Bearer ${reduxAuth.apiToken}`
         },
         rejectUnauthorized: false
       }).then(response=>{
@@ -61,9 +62,9 @@ const ObjectList = (props) => {
       setError(null);
       setLoading(true);
       
-      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/stock`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${reduxAuth.ceoSeq}/stock`,{
         headers:{
-          Authorization: `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
+          Authorization: `Bearer ${reduxAuth.apiToken}`
         }
         , rejectUnauthorized: false
       }).then(response=>{
@@ -83,9 +84,9 @@ const ObjectList = (props) => {
       setError(null);
       setLoading(true);
       
-      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/order`,{
+      return axios.get(`${config.BASE_URL}/api/v1/manager/store/${reduxAuth.ceoSeq}/order`,{
         headers:{
-          Authorization: `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
+          Authorization: `Bearer ${reduxAuth.apiToken}`
         }
         , rejectUnauthorized: false
       }).then(response=>{

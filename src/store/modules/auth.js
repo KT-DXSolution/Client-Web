@@ -15,8 +15,8 @@ export const logout = () =>({
 
 // reducer
 const initialState = {
-  apiToken: 'initToken',
-  ceoSeq: 0
+  apiToken:'init',
+  ceoSeq:0
 };
 
 export default function reducer(state = initialState, action) {
@@ -28,7 +28,10 @@ export default function reducer(state = initialState, action) {
         ceoSeq: action.ceoSeq
       };
     case LOGOUT:
-      return {}
+      return {
+        ...state,
+        ...initialState
+      }
     default:
       return state;
   }

@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+
 import axios from 'axios';
 import { 
   Flex, 
@@ -21,7 +23,8 @@ const RegisterStock = () => {
   const [items, setItems] = useState(null);
   const [stockArray, setStockArray] = useState([]);
   const stocks = useRef(new Set())
-  const ceoSeq = localStorage.getItem('ceoSeq');
+
+  const reduxAuth = useSelector(state=>state.auth)
 
   useEffect(()=>{
     const fetchItems = async() =>{
@@ -32,9 +35,9 @@ const RegisterStock = () => {
 
         // loading 상태를 true로 바꿈
         setLoading(true);
-        axios.get(`${config.BASE_URL}/api/v1/manager/store/${ceoSeq}/item`,{
+        axios.get(`${config.BASE_URL}/api/v1/manager/store/${reduxAuth.ceoSeq}/item`,{
           headers:{
-            Authorization: `Bearer ${localStorage.getItem('apiToken')||config.DEFAULT_TOKEN}`
+            Authorization: `Bearer ${reduxAuth.apiToken}`
           }
           , rejectUnauthorized: false
         }).then(response=>{
