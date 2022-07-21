@@ -17,8 +17,9 @@ import {
 // Assets
 import signInImage from "assets/img/signInImage.png";
 import * as config from 'config.js'
-import { useSelector, useDispatch  } from "react-redux";
+import { useDispatch  } from "react-redux";
 import { login } from '../store/modules/auth'
+import { DEFAULT_TOKEN } from 'config.js'
 
 function SignIn() {
   // Chakra color mode
@@ -31,8 +32,14 @@ function SignIn() {
 
   const ceoLogin = function(){
     let ceoSeq = document.getElementById('ceoId').value;
-    localStorage.setItem('ceoSeq', ceoSeq);
-    window.location.reload();
+    if(ceoSeq==='6677'){
+      localStorage.setItem('ceoSeq', ceoSeq);
+      window.location.href = `${process.env.PUBLIC_URL}/`
+      dispatch(login(DEFAULT_TOKEN, ceoSeq));
+    }
+    else {
+      alert('Wrong ID')
+    }
   }
 
   const kakaoLogin = function(){
@@ -45,8 +52,9 @@ function SignIn() {
     // Kakao Token
     const apiToken = localStorage.getItem('apiToken');
     if(apiToken){
-      dispatch(login(apiToken));
+      dispatch(login(apiToken, 26122));
       window.location.href = `${process.env.PUBLIC_URL}/`
+      localStorage.removeItem('apiToken');
     }
   }
 

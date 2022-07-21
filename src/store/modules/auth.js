@@ -2,15 +2,17 @@
 export const LOGIN = "auth/LOGIN";
 
 // actions
-export const login = apiToken => ({
+export const login = (apiToken, ceoSeq) => ({
   // setToken
   type: LOGIN,
-  apiToken: apiToken
+  apiToken: apiToken,
+  ceoSeq: ceoSeq
 });
 
 // reducer
 const initialState = {
-  apiToken: 'initToken'
+  apiToken: 'initToken',
+  ceoSeq: 0
 };
 
 export default function reducer(state = initialState, action) {
@@ -19,7 +21,8 @@ export default function reducer(state = initialState, action) {
     case LOGIN:
       return {
         ...state,
-        apiToken: action.apiToken
+        apiToken: action.apiToken,
+        ceoSeq: action.ceoSeq
       };
     default:
       return state;

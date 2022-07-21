@@ -14,10 +14,10 @@ const LazyRegisterStock = lazy(()=>import('./pages/RegisterStock'))
 
 function App(){
   
-  const tokenInRedux = useSelector(state=>state.auth.apiToken);
+  const reduxAuth = useSelector(state=>state.auth);
 
   const isLogin = () =>{
-    console.log('Get Redux Token : ',tokenInRedux)
+    console.log('Get Redux : ',reduxAuth.ceoSeq, reduxAuth.apiToken)
     if(localStorage.getItem('ceoSeq')) return true
     return false;
   }
