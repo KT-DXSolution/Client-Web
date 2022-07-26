@@ -10,27 +10,32 @@ export const login = (apiToken, ceoSeq) => ({
   ceoSeq: ceoSeq
 });
 export const logout = () =>({
-  type: LOGOUT
+  type: LOGOUT,
+  ...initialState
 });
 
 // reducer
 const initialState = {
-  apiToken:'init',
+  apiToken:'initToken',
   ceoSeq:0
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
+      console.log(state,action)
       return {
         ...state,
         apiToken: action.apiToken,
         ceoSeq: action.ceoSeq
-      };
+      }
     case LOGOUT:
-      return {
+      console.log(state,action)
+      localStorage.removeItem('persist:root')
+      return { 
         ...state,
-        ...initialState
+        apiToken: action.apiToken,
+        ceoSeq: action.ceoSeq
       }
     default:
       return state;

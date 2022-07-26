@@ -23,7 +23,7 @@ function Navbar() {
         }
     };
 
-    const logoutClick = () =>{
+    const logoutClick = function(){
         dispatch(logout());
         window.location.href = `${process.env.PUBLIC_URL}/`
     }

@@ -35,8 +35,8 @@ function SignIn() {
   const ceoLogin = function(){
     let ceoSeq = document.getElementById('ceoId').value;
     if(ceoSeq==='6677'){
-      moveHome();
       dispatch(login(DEFAULT_TOKEN, ceoSeq));
+      moveHome();
     }
     else {
       alert('Wrong ID')
